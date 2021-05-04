@@ -1,0 +1,18 @@
++ veritabanı 
+- arayüz tasarımı
+- scrum table oluşturulması
+
+------------------------------
+enes:ürün-para onayı
+simge:login-giriş ekranı, video
+alieren: bilgi girişi
+sezer:veritabanı, arayüz
+
+
+SİMGE 	1.Login Ekranı
+
+ALİEREN 2.Alıcı ve Satıcının Bilgi Giriş Ekranı
+
+ENES 	3.Adminin ürün ve para onayı kısmı
+
+SEZER 	4.Fiyatın Belirlenmesi kısmı

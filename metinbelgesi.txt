@@ -3,6 +3,8 @@
 - scrum table oluşturulması
 
 ------------------------------
+trello linki: https://trello.com/b/h2w9MUoA/yazılım-yapımı
+------------------------------
 enes:ürün-para onayı
 simge:login-giriş ekranı, video
 alieren: bilgi girişi
@@ -16,3 +18,4 @@ ALİEREN 2.Alıcı ve Satıcının Bilgi Giriş Ekranı
 ENES 	3.Adminin ürün ve para onayı kısmı
 
 SEZER 	4.Fiyatın Belirlenmesi kısmı
+sezeringoo

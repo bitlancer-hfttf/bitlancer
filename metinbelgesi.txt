@@ -3,6 +3,8 @@
 - scrum table oluşturulması
 
 ------------------------------
+trello linki: https://trello.com/b/h2w9MUoA/yazılım-yapımı
+------------------------------
 enes:ürün-para onayı
 simge:login-giriş ekranı, video
 alieren: bilgi girişi

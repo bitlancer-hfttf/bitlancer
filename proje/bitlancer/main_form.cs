@@ -13,6 +13,7 @@ namespace bitlancer
     public partial class main_form : Form
     {
         DataTable data;
+        User MyUser;
         int userID;
         public main_form(int userID)
         {
@@ -25,22 +26,33 @@ namespace bitlancer
             CheckForIllegalCrossThreadCalls = false;
             timer1.Start();
         }
-        public void setUserToUI(User MyUser)
-        {
-            kullancıAdLabel.Text = MyUser.fullName;
-            bakiyeLabel.Text = MyUser.money + " ₺";
-            urunlerDatagrid.DataSource = MyUser.items;
-            graphic.DataSource = MyUser.items;
-            graphic.Series["Para"].XValueMember = "itemName";
-            graphic.Series["Para"].YValueMembers = "quantity";
-            graphic.DataBind();
-            transferlerDatgrid.DataSource = SingletonDB.GetInstance.getItemTransfers(MyUser.id);
-        }
-        public void updateVariables()
+        public void setUserToUI()
         {
             this.dataGridView1.DataSource = data;
+            kullancıAdLabel.Text = MyUser.fullName;
+            switch (MyUser.userType)
+            {
+                case bitlancer.userTypes.basic: kullaniciTipiLabel.Text = "Temel Kullanıcı";
+                    break;
+                case bitlancer.userTypes.admin: kullaniciTipiLabel.Text = "Üst Düzey Kullanıcı";
+                    break;
+                default: kullaniciTipiLabel.Text = "Temel Kullanıcı";
+                    break;
+            }
+            bakiyeLabel.Text = MyUser.money + " ₺";
+            urunlerDatagrid.DataSource = MyUser.items;
+            List<chartItemValue> chartItemList = new List<chartItemValue>();
+            foreach (item item in MyUser.items)
+            {
+                chartItemList.Add(new chartItemValue(item.itemName,item.quantity*item.unitPrice));
+            }
+            graphic.DataSource = chartItemList;
+            graphic.Series["Para"].XValueMember = "itemName";
+            graphic.Series["Para"].YValueMembers = "val";
+            graphic.DataBind();
+            chartItemList.Clear();
+            transferlerDatgrid.DataSource = SingletonDB.GetInstance.getItemTransfers(MyUser.id);
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (!backgroundWorker1.IsBusy)
@@ -50,16 +62,14 @@ namespace bitlancer
         }
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-
-             data= SingletonDB.GetInstance.getItems();
+            MyUser = SingletonDB.GetInstance.getUser(userID);
+            data = SingletonDB.GetInstance.getItems();
             
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            updateVariables();
-            User MyUser = SingletonDB.GetInstance.getUser(userID);
-            setUserToUI(MyUser);
+            setUserToUI();
         }
 
         private void chart1_Click(object sender, EventArgs e)

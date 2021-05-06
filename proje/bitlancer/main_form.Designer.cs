@@ -48,6 +48,7 @@
             this.transferlerDatgrid = new System.Windows.Forms.DataGridView();
             this.kullancıAdLabel = new System.Windows.Forms.Label();
             this.graphic = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.kullaniciTipiLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -156,7 +157,7 @@
             this.urunlerDatagrid.ReadOnly = true;
             this.urunlerDatagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.urunlerDatagrid.ShowEditingIcon = false;
-            this.urunlerDatagrid.Size = new System.Drawing.Size(625, 193);
+            this.urunlerDatagrid.Size = new System.Drawing.Size(534, 193);
             this.urunlerDatagrid.TabIndex = 6;
             // 
             // bakiyeLabel
@@ -230,9 +231,9 @@
             this.kullancıAdLabel.ForeColor = System.Drawing.Color.White;
             this.kullancıAdLabel.Location = new System.Drawing.Point(12, 3);
             this.kullancıAdLabel.Name = "kullancıAdLabel";
-            this.kullancıAdLabel.Size = new System.Drawing.Size(50, 29);
+            this.kullancıAdLabel.Size = new System.Drawing.Size(186, 29);
             this.kullancıAdLabel.TabIndex = 8;
-            this.kullancıAdLabel.Text = "-- ₺";
+            this.kullancıAdLabel.Text = "Name Surname";
             // 
             // graphic
             // 
@@ -242,30 +243,48 @@
             this.graphic.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.graphic.Legends.Add(legend1);
-            this.graphic.Location = new System.Drawing.Point(637, 6);
+            this.graphic.Location = new System.Drawing.Point(546, 6);
             this.graphic.Name = "graphic";
-            this.graphic.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            this.graphic.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series1.Legend = "Legend1";
             series1.Name = "Para";
             this.graphic.Series.Add(series1);
-            this.graphic.Size = new System.Drawing.Size(274, 204);
+            this.graphic.Size = new System.Drawing.Size(365, 279);
             this.graphic.TabIndex = 8;
             this.graphic.Text = "chart1";
             this.graphic.Click += new System.EventHandler(this.chart1_Click);
             // 
+            // kullaniciTipiLabel
+            // 
+            this.kullaniciTipiLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.kullaniciTipiLabel.AutoSize = true;
+            this.kullaniciTipiLabel.BackColor = System.Drawing.Color.Transparent;
+            this.kullaniciTipiLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.kullaniciTipiLabel.ForeColor = System.Drawing.Color.Plum;
+            this.kullaniciTipiLabel.Location = new System.Drawing.Point(866, 13);
+            this.kullaniciTipiLabel.Name = "kullaniciTipiLabel";
+            this.kullaniciTipiLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.kullaniciTipiLabel.Size = new System.Drawing.Size(70, 16);
+            this.kullaniciTipiLabel.TabIndex = 9;
+            this.kullaniciTipiLabel.Text = "----- User";
+            this.kullaniciTipiLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // main_form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Purple;
             this.ClientSize = new System.Drawing.Size(949, 753);
+            this.Controls.Add(this.kullaniciTipiLabel);
             this.Controls.Add(this.kullancıAdLabel);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.dataGridView1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "main_form";
-            this.Text = "main_form";
+            this.Text = "İşlem Ekranı";
             this.Load += new System.EventHandler(this.main_form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -295,5 +314,6 @@
         private System.Windows.Forms.DataGridView transferlerDatgrid;
         private System.Windows.Forms.Label kullancıAdLabel;
         private System.Windows.Forms.DataVisualization.Charting.Chart graphic;
+        private System.Windows.Forms.Label kullaniciTipiLabel;
     }
 }

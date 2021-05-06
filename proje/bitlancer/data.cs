@@ -185,6 +185,39 @@ namespace bitlancer{
 			}
 			return dt;
 		}
+		public DataTable getItemTransfers(int id)
+        {
+			DataTable dt = new DataTable();
+			MySqlConnection connection = null;
+			MySqlCommand command = null;
+			try
+			{
+				connection = getConnection();
+				connection.Open();
+				command = new MySqlCommand("select (row_number() over (order by f.id desc))as 'No:', i.item_name as 'Ürün:',concat(min(f.unit_price),' ₺') as 'Birim Fiyat:',f.quantity as 'Adet', f.date as 'Tarih:',f.state as 'Durum',f.description as 'Açıklama' from items i, item_adds f where  i.id=f.item_id and f.user_id="+id+" GROUP by f.item_id", connection);
+				dt.Load(command.ExecuteReader());
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+			}
+			finally
+			{
+				if (connection != null)
+				{
+					try
+					{//bağlantıları kapat
+						connection.Close();
+						command.Dispose();
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e.Message);
+					}
+				}
+			}
+			return dt;
+		}
 
 		public User getUser(int id)
 		{

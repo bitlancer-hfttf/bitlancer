@@ -30,6 +30,11 @@ namespace bitlancer
             kullancıAdLabel.Text = MyUser.fullName;
             bakiyeLabel.Text = MyUser.money + " ₺";
             urunlerDatagrid.DataSource = MyUser.items;
+            graphic.DataSource = MyUser.items;
+            graphic.Series["Para"].XValueMember = "itemName";
+            graphic.Series["Para"].YValueMembers = "quantity";
+            graphic.DataBind();
+            transferlerDatgrid.DataSource = SingletonDB.GetInstance.getItemTransfers(MyUser.id);
         }
         public void updateVariables()
         {
@@ -53,7 +58,12 @@ namespace bitlancer
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             updateVariables();
-            setUserToUI(SingletonDB.GetInstance.getUser(userID));
+            User MyUser = SingletonDB.GetInstance.getUser(userID);
+            setUserToUI(MyUser);
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
         }
     }
 }

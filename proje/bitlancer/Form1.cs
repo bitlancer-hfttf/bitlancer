@@ -18,12 +18,13 @@ namespace bitlancer
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            if (username_textbox.Text!=""&&userpassword_textbox.Text!="")
+            if (username_textbox.Text!="" && userpassword_textbox.Text!="")
             {
-                int currentUser = SingletonDB.GetInstance.loginCheck(username_textbox.Text, userpassword_textbox.Text, "personal_users where user_personal_type=1");
+                int currentUser = SingletonDB.GetInstance.loginCheck(username_textbox.Text, userpassword_textbox.Text);
+                MessageBox.Show(currentUser.ToString());
                 if (currentUser==0)
                 {
-                    currentUser = SingletonDB.GetInstance.loginCheck(username_textbox.Text,userpassword_textbox.Text,"users");
+                    currentUser = SingletonDB.GetInstance.loginCheck(username_textbox.Text,userpassword_textbox.Text);
                 }
                 if (currentUser!=0)
                 {

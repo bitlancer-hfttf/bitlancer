@@ -16,7 +16,7 @@ namespace bitlancer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new loginForm());
+            Application.Run(new main_form(new User(3,"Sezer Yıldırım","sezer_admin","Çanakkale","asd@gmail.com",bitlancer.userTypes.admin)));
         }
     }
 }

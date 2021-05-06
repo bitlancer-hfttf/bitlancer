@@ -11,3 +11,17 @@ C:\Users\sezer\Desktop\ödev\2.sınıf\yazılım yapımı Üst ders\bitlancer\bi
 C:\Users\sezer\Desktop\ödev\2.sınıf\yazılım yapımı Üst ders\bitlancer\bitlancer\bin\Debug\MySql.Data.dll
 C:\Users\sezer\Desktop\ödev\2.sınıf\yazılım yapımı Üst ders\bitlancer\bitlancer\bin\Debug\MySql.Data.xml
 C:\Users\sezer\Desktop\ödev\2.sınıf\yazılım yapımı Üst ders\bitlancer\bitlancer\obj\Debug\bitlancer.csproj.CopyComplete
+E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.csprojAssemblyReference.cache
+E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.loginForm.resources
+E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.main_form.resources
+E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.Properties.Resources.resources
+E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.csproj.GenerateResource.cache
+E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.csproj.CoreCompileInputs.cache
+E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.exe
+E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.pdb
+E:\projects\bitlancer\proje\bitlancer\bin\Debug\bitlancer.exe.config
+E:\projects\bitlancer\proje\bitlancer\bin\Debug\bitlancer.exe
+E:\projects\bitlancer\proje\bitlancer\bin\Debug\bitlancer.pdb
+E:\projects\bitlancer\proje\bitlancer\bin\Debug\MySql.Data.dll
+E:\projects\bitlancer\proje\bitlancer\bin\Debug\MySql.Data.xml
+E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.csproj.CopyComplete

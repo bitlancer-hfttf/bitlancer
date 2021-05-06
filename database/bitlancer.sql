@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 06 May 2021, 17:48:19
+-- Üretim Zamanı: 06 May 2021, 18:37:46
 -- Sunucu sürümü: 10.4.10-MariaDB
 -- PHP Sürümü: 7.3.12
 
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `item_user_infos` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`,`item_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
 -- Tablo döküm verisi `item_user_infos`
@@ -120,11 +120,12 @@ CREATE TABLE IF NOT EXISTS `item_user_infos` (
 
 INSERT INTO `item_user_infos` (`id`, `user_id`, `item_id`, `quantity`, `unit_price`) VALUES
 (1, 3, 2, 90, 5),
-(3, 4, 2, 150000, 3.18),
+(3, 4, 2, 7541, 12.8),
 (4, 3, 4, 225254, 1),
 (5, 4, 4, 10050, 1),
 (6, 3, 3, 1500, 5.8),
-(10, 4, 5, 45123, 45.4);
+(10, 4, 5, 45123, 4.7),
+(11, 4, 3, 8421, 5.754245);
 
 -- --------------------------------------------------------
 
@@ -150,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `user_full_name`, `user_name`, `user_password`, `user_address`, `user_mail`, `user_type_id`) VALUES
-(3, 'Sezer Yıldırım', 'sezer_admin', '123', 'Çanakkale', 'asd@gmail.com', 5),
+(3, 'Muhammet Sezer Yıldırım', 'sezer_admin', '123', 'Çanakkale', 'asd@gmail.com', 5),
 (4, 'Enes Koyuncu', 'enesk', '123', 'izmir', 'asdas@gmail.com', 6);
 
 -- --------------------------------------------------------

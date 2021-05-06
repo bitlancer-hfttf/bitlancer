@@ -8,10 +8,14 @@ namespace bitlancer
 {
     public class item
     {
-        public int id { get; private set; }
+        public int id { get;  set; }
         public string itemName { get; set; }
         public double unitPrice { get; set; }
         public int quantity { get; set; }
+        public item()
+        {
+
+        }
         public item(int id,string name)
         {
             this.id = id;

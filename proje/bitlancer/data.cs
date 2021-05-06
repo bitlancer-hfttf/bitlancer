@@ -114,6 +114,44 @@ namespace bitlancer{
 			return state ? getId("select id from users where user_name='" + userName + "'") : 0;
 
 		}
+		public item getItem(int id)
+		{
+			item myItem=new item();
+			MySqlConnection connection = null;
+			MySqlCommand command = null;
+			try
+			{
+				connection = getConnection();
+				connection.Open();
+				command = new MySqlCommand("select * from items where id="+id, connection);
+				MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+					myItem.id = int.Parse(reader[0].ToString());
+					myItem.itemName= reader[1].ToString();
+                }
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+			}
+			finally
+			{
+				if (connection != null)
+				{
+					try
+					{//bağlantıları kapat
+						connection.Close();
+						command.Dispose();
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e.Message);
+					}
+				}
+			}
+			return myItem;
+		}
 		public DataTable getItems()
 		{
 			DataTable dt = new DataTable();
@@ -146,24 +184,37 @@ namespace bitlancer{
 				}
 			}
 			return dt;
-
 		}
 
 		public User getUser(int id)
 		{
-			User asd = new User(3, "Sezer Yıldırım", "sezer_admin", "Çanakkale", "asd@gmail.com", bitlancer.userTypes.admin);
+			User myUser=new User();
+			List<item> MyItems = new List<item>();
 			MySqlConnection connection = null;
 			MySqlCommand command = null;
 			try
 			{
 				connection = getConnection();
 				connection.Open();
-				//command = new MySqlCommand(sql, connection);
-				id = Convert.ToInt32(command.ExecuteScalar());
-				command.ExecuteNonQuery();
+				command = new MySqlCommand("select * from item_user_infos inner join items on item_user_infos.item_id=items.id where user_id=" + id, connection);
+				MySqlDataReader reader = command.ExecuteReader();
+				while (reader.Read())
+				{
+					item tempItem = new item(int.Parse(reader[0].ToString()), reader[6].ToString(), Convert.ToDouble(reader[4].ToString()), int.Parse(reader[3].ToString()));
+					MyItems.Add(tempItem);
+				}
+				reader.Close();
+				command = new MySqlCommand("select * from users where id=" + id, connection);
+				reader = command.ExecuteReader();
+				while (reader.Read())
+				{
+					myUser = new User(id, reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), reader[6].ToString() == "5" ? bitlancer.userTypes.admin : bitlancer.userTypes.basic,MyItems);
+				}
+
 			}
 			catch (Exception e)
 			{
+			
 				Console.WriteLine(e.Message);
 			}
 			finally
@@ -181,7 +232,7 @@ namespace bitlancer{
 					}
 				}
 			}
-			return asd;
+			return myUser;
 		}
 	}
 }

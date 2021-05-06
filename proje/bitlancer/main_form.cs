@@ -13,10 +13,10 @@ namespace bitlancer
     public partial class main_form : Form
     {
         DataTable data;
-        User MyUser;
-        public main_form(User MyUser)
+        int userID;
+        public main_form(int userID)
         {
-            this.MyUser = MyUser;
+            this.userID = userID;
             InitializeComponent();
         }
 
@@ -24,6 +24,12 @@ namespace bitlancer
         {
             CheckForIllegalCrossThreadCalls = false;
             timer1.Start();
+        }
+        public void setUserToUI(User MyUser)
+        {
+            kullancıAdLabel.Text = MyUser.fullName;
+            bakiyeLabel.Text = MyUser.money + " ₺";
+            urunlerDatagrid.DataSource = MyUser.items;
         }
         public void updateVariables()
         {
@@ -47,6 +53,7 @@ namespace bitlancer
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             updateVariables();
+            setUserToUI(SingletonDB.GetInstance.getUser(userID));
         }
     }
 }

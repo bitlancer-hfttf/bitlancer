@@ -13,7 +13,7 @@ namespace bitlancer
         public double val { get; set; }
         public chartItemValue(string itemName,double val)
         {
-            this.itemName = itemName;
+            this.itemName = itemName ;
             this.val = val;
         }
     }

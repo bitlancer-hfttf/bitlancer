@@ -25,3 +25,4 @@ E:\projects\bitlancer\proje\bitlancer\bin\Debug\bitlancer.pdb
 E:\projects\bitlancer\proje\bitlancer\bin\Debug\MySql.Data.dll
 E:\projects\bitlancer\proje\bitlancer\bin\Debug\MySql.Data.xml
 E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.csproj.CopyComplete
+E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.orderForm.resources

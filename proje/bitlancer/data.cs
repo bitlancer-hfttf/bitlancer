@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
 namespace bitlancer{	
@@ -47,6 +48,39 @@ namespace bitlancer{
 				connection.Open();
 				command = new MySqlCommand(sql, connection);
 				id = Convert.ToInt32(command.ExecuteScalar());
+				command.ExecuteNonQuery();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+			}
+			finally
+			{
+				if (connection != null)
+				{
+					try
+					{//bağlantıları kapat
+						connection.Close();
+						command.Dispose();
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e.Message);
+					}
+				}
+			}
+			return id;
+		}
+		public int  getId(int id)
+		{
+			MySqlConnection connection = null;
+			MySqlCommand command = null;
+			try
+			{
+				connection = getConnection();
+				connection.Open();
+				Random rnd = new Random();
+				command = new MySqlCommand("update item_user_infos set unit_price="+id+ " where id=6", connection);
 				command.ExecuteNonQuery();
 			}
 			catch (Exception e)
@@ -161,8 +195,11 @@ namespace bitlancer{
 			{
 				connection = getConnection();
 				connection.Open();
-				command = new MySqlCommand("select (row_number() over (order by i.id))as 'No:', i.item_name,concat(min(f.unit_price),' ₺') as 'Fiyat' from items i, item_user_infos f where  i.id=f.item_id and i.id!=4 GROUP by f.item_id", connection);
+				command = new MySqlCommand("select (row_number() over (order by i.id))as 'No:', i.item_name,concat(min(f.unit_price),' ₺') as 'Fiyat',i.id from items i, item_user_infos f where  i.id=f.item_id and i.id!=4 GROUP by f.item_id", connection);
 				dt.Load(command.ExecuteReader());
+				/*System.Data.DataColumn newColumn = new System.Data.DataColumn("AL", typeof(DataGridViewButtonColumn));
+				newColumn.DefaultValue = "AL";
+				dt.Columns.Add(newColumn);*/
 			}
 			catch (Exception e)
 			{
@@ -184,6 +221,47 @@ namespace bitlancer{
 				}
 			}
 			return dt;
+		}
+		public item getItemOrder(int id)
+        {
+			item urun = new item();
+			MySqlConnection connection = null;
+			MySqlCommand command = null;
+			try
+			{
+				connection = getConnection();
+				connection.Open();
+				command = new MySqlCommand("select item_id, min(unit_price), sum(quantity),(select item_name from items where id=s.item_id) from item_user_infos s where item_id="+id, connection);
+				command.Connection = connection;
+				MySqlDataReader read = command.ExecuteReader();
+				while (read.Read())
+				{
+					urun.id=Convert.ToInt32(read[0]);
+					urun.unitPrice = Convert.ToDouble(read[1]);
+					urun.quantity = Convert.ToInt32(read[2]);
+					urun.itemName = read[3].ToString();
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("hata: " + e.Message);
+			}
+			finally
+			{
+				if (connection != null)
+				{
+					try
+					{
+						connection.Close();
+						command.Dispose();
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e.Message);
+					}
+				}
+			}
+			return urun;
 		}
 		public DataTable getItemTransfers(int id)
         {

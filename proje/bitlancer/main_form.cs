@@ -12,7 +12,7 @@ namespace bitlancer
 {
     public partial class main_form : Form
     {
-        DataTable itemData,lastOrdersData;
+        DataTable itemData,lastOrdersData,userTransfers;
         User MyUser;
         int userID;
         public main_form(int userID)
@@ -30,8 +30,11 @@ namespace bitlancer
         {
             try
             {
-                dataGridView1.DataSource = itemData;
+                mainItemsDataGrid.DataSource = itemData;
+                mainItemsDataGrid.Columns[5].Visible = false;
                 lastOrdersDatagrid.DataSource = lastOrdersData;
+                urunlerDatagrid.DataSource = MyUser.items;
+                transferlerDatgrid.DataSource = userTransfers;
                 foreach (DataGridViewRow row in lastOrdersDatagrid.Rows)
                 {
                     if (row.Cells[1].Value.ToString()=="ALIM")
@@ -58,7 +61,6 @@ namespace bitlancer
                         break;
                 }
                 bakiyeLabel.Text = MyUser.money + " ₺";
-                urunlerDatagrid.DataSource = MyUser.items;
                 List<chartItemValue> chartItemList = new List<chartItemValue>();
                 if (MyUser.items!=null)
                 {
@@ -66,13 +68,14 @@ namespace bitlancer
                     {
                         chartItemList.Add(new chartItemValue(item.itemName, item.quantity * item.unitPrice));
                     }
+                   graphic.DataSource = chartItemList;
                 }
-                graphic.DataSource = chartItemList;
                 graphic.Series["Para"].XValueMember = "itemName";
                 graphic.Series["Para"].YValueMembers = "val";
+                graphic.Series["Para"].IsValueShownAsLabel = true;
+                graphic.Titles["miktar"].Text = "CÜZDAN "+bakiyeLabel.Text;
                 graphic.DataBind();
                 chartItemList.Clear();
-                transferlerDatgrid.DataSource = SingletonDB.GetInstance.getItemTransfers(MyUser.id);
             }
             catch (Exception e)
             {
@@ -88,15 +91,34 @@ namespace bitlancer
         }
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            MyUser = SingletonDB.GetInstance.getUser(userID);
             itemData = SingletonDB.GetInstance.getItems();
+            MyUser = SingletonDB.GetInstance.getUser(userID);
             lastOrdersData = SingletonDB.GetInstance.getLastOrders(userID);
-
+            userTransfers = SingletonDB.GetInstance.getItemTransfers(MyUser.id);
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             setUserToUI();
+        }
+
+        private void mainItemsDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                orderForm order;
+                if (e.ColumnIndex==0)
+                {
+                    order = new orderForm("ALIM",Convert.ToInt32(mainItemsDataGrid[5, e.RowIndex].Value));
+                }
+                else
+                {
+                    order = new orderForm("SATIM", Convert.ToInt32(mainItemsDataGrid[5, e.RowIndex].Value));
+                }
+                order.ShowDialog();
+            }
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)

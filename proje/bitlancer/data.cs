@@ -197,9 +197,6 @@ namespace bitlancer{
 				connection.Open();
 				command = new MySqlCommand("select (row_number() over (order by i.id))as 'No:', i.item_name,concat(min(f.unit_price),' ₺') as 'Fiyat',i.id from items i, item_user_infos f where  i.id=f.item_id and i.id!=4 GROUP by f.item_id", connection);
 				dt.Load(command.ExecuteReader());
-				/*System.Data.DataColumn newColumn = new System.Data.DataColumn("AL", typeof(DataGridViewButtonColumn));
-				newColumn.DefaultValue = "AL";
-				dt.Columns.Add(newColumn);*/
 			}
 			catch (Exception e)
 			{

@@ -84,6 +84,7 @@
             this.logup_button.TabIndex = 4;
             this.logup_button.Text = "KAYIT";
             this.logup_button.UseVisualStyleBackColor = false;
+            this.logup_button.Click += new System.EventHandler(this.logup_button_Click);
             // 
             // login_button
             // 

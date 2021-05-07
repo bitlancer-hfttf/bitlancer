@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 06 May 2021, 18:37:46
+-- Üretim Zamanı: 07 May 2021, 19:23:25
 -- Sunucu sürümü: 10.4.10-MariaDB
 -- PHP Sürümü: 7.3.12
 
@@ -64,14 +64,15 @@ CREATE TABLE IF NOT EXISTS `item_adds` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
 -- Tablo döküm verisi `item_adds`
 --
 
 INSERT INTO `item_adds` (`id`, `user_id`, `item_id`, `quantity`, `unit_price`, `date`, `state`, `description`) VALUES
-(1, 4, 2, 150, 5, '2021-05-06', 1, 'TAMAMLANDI');
+(1, 4, 2, 150, 5, '2021-05-06', 1, 'TAMAMLANDI'),
+(2, 3, 4, 1200, 1, '2021-05-07', 0, 'BEKLENİYOR');
 
 -- --------------------------------------------------------
 
@@ -94,7 +95,15 @@ CREATE TABLE IF NOT EXISTS `item_orders` (
   KEY `destination_user_id` (`destination_user_id`,`source_user_id`,`item_id`),
   KEY `source_user_id` (`source_user_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+
+--
+-- Tablo döküm verisi `item_orders`
+--
+
+INSERT INTO `item_orders` (`id`, `destination_user_id`, `source_user_id`, `item_id`, `order_unit_price`, `order_quantity`, `order_type`, `order_state`, `order_date`) VALUES
+(1, 4, 3, 2, 5, 510, '', 0, '2021-05-06'),
+(2, 3, 4, 3, 7.7, 1452, '', 0, '2021-05-06');
 
 -- --------------------------------------------------------
 
@@ -121,11 +130,10 @@ CREATE TABLE IF NOT EXISTS `item_user_infos` (
 INSERT INTO `item_user_infos` (`id`, `user_id`, `item_id`, `quantity`, `unit_price`) VALUES
 (1, 3, 2, 90, 5),
 (3, 4, 2, 7541, 12.8),
-(4, 3, 4, 225254, 1),
+(4, 3, 4, 1584, 1),
 (5, 4, 4, 10050, 1),
-(6, 3, 3, 1500, 5.8),
-(10, 4, 5, 45123, 4.7),
-(11, 4, 3, 8421, 5.754245);
+(6, 3, 3, 1500, 12.45),
+(10, 4, 5, 45123, 1.46);
 
 -- --------------------------------------------------------
 
@@ -141,6 +149,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_password` varchar(100) COLLATE utf8_turkish_ci DEFAULT NULL,
   `user_address` varchar(1000) COLLATE utf8_turkish_ci DEFAULT NULL,
   `user_mail` varchar(250) COLLATE utf8_turkish_ci DEFAULT NULL,
+  `user_tc` varchar(255) COLLATE utf8_turkish_ci NOT NULL,
+  `user_tel` varchar(255) COLLATE utf8_turkish_ci NOT NULL,
   `user_type_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_type_id` (`user_type_id`)
@@ -150,9 +160,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Tablo döküm verisi `users`
 --
 
-INSERT INTO `users` (`id`, `user_full_name`, `user_name`, `user_password`, `user_address`, `user_mail`, `user_type_id`) VALUES
-(3, 'Muhammet Sezer Yıldırım', 'sezer_admin', '123', 'Çanakkale', 'asd@gmail.com', 5),
-(4, 'Enes Koyuncu', 'enesk', '123', 'izmir', 'asdas@gmail.com', 6);
+INSERT INTO `users` (`id`, `user_full_name`, `user_name`, `user_password`, `user_address`, `user_mail`, `user_tc`, `user_tel`, `user_type_id`) VALUES
+(3, 'Muhammet Sezer Yıldırım', 'sezer_admin', '123', 'Çanakkale', 'asd@gmail.com', '65432156321', '5462133521', 5),
+(4, 'Enes Koyuncu', 'enesk', '123', 'izmir', 'asdas@gmail.com', '532156321', '653121321', 6);
 
 -- --------------------------------------------------------
 

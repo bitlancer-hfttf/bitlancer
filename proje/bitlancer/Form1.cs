@@ -21,16 +21,18 @@ namespace bitlancer
             if (username_textbox.Text!="" && userpassword_textbox.Text!="")
             {
                 int currentUser = SingletonDB.GetInstance.loginCheck(username_textbox.Text, userpassword_textbox.Text);
-                MessageBox.Show(currentUser.ToString());
-                if (currentUser==0)
-                {
-                    currentUser = SingletonDB.GetInstance.loginCheck(username_textbox.Text,userpassword_textbox.Text);
-                }
                 if (currentUser!=0)
                 {
-                    MessageBox.Show(currentUser.ToString());
+                    main_form main = new main_form(currentUser);
+                    main.Show();
+                    this.Hide();
                 }
             }
+        }
+
+        private void logup_button_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

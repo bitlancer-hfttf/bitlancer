@@ -30,32 +30,39 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.graphic = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label3 = new System.Windows.Forms.Label();
             this.urunlerDatagrid = new System.Windows.Forms.DataGridView();
             this.bakiyeLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.transferlerDatgrid = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lastOrdersDatagrid = new System.Windows.Forms.DataGridView();
             this.kullancıAdLabel = new System.Windows.Forms.Label();
-            this.graphic = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.kullaniciTipiLabel = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graphic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.urunlerDatagrid)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.transferlerDatgrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.graphic)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lastOrdersDatagrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -100,6 +107,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 424);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -121,6 +129,27 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Hesap Özeti:";
             // 
+            // graphic
+            // 
+            this.graphic.BorderlineColor = System.Drawing.Color.Indigo;
+            this.graphic.BorderlineWidth = 5;
+            chartArea1.Name = "ChartArea1";
+            this.graphic.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.graphic.Legends.Add(legend1);
+            this.graphic.Location = new System.Drawing.Point(546, 6);
+            this.graphic.Name = "graphic";
+            this.graphic.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Para";
+            this.graphic.Series.Add(series1);
+            this.graphic.Size = new System.Drawing.Size(365, 279);
+            this.graphic.TabIndex = 8;
+            this.graphic.Text = "chart1";
+            this.graphic.Click += new System.EventHandler(this.chart1_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -135,6 +164,7 @@
             // 
             // urunlerDatagrid
             // 
+            this.urunlerDatagrid.AllowDrop = true;
             this.urunlerDatagrid.AllowUserToAddRows = false;
             this.urunlerDatagrid.AllowUserToDeleteRows = false;
             this.urunlerDatagrid.AllowUserToOrderColumns = true;
@@ -197,12 +227,12 @@
             // 
             // transferlerDatgrid
             // 
+            this.transferlerDatgrid.AllowDrop = true;
             this.transferlerDatgrid.AllowUserToAddRows = false;
             this.transferlerDatgrid.AllowUserToDeleteRows = false;
             this.transferlerDatgrid.AllowUserToOrderColumns = true;
             this.transferlerDatgrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.transferlerDatgrid.BackgroundColor = System.Drawing.Color.Thistle;
-            this.transferlerDatgrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -223,6 +253,46 @@
             this.transferlerDatgrid.Size = new System.Drawing.Size(911, 285);
             this.transferlerDatgrid.TabIndex = 1;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.lastOrdersDatagrid);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(917, 291);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Son Emirler:";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // lastOrdersDatagrid
+            // 
+            this.lastOrdersDatagrid.AllowDrop = true;
+            this.lastOrdersDatagrid.AllowUserToAddRows = false;
+            this.lastOrdersDatagrid.AllowUserToDeleteRows = false;
+            this.lastOrdersDatagrid.AllowUserToOrderColumns = true;
+            this.lastOrdersDatagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.lastOrdersDatagrid.BackgroundColor = System.Drawing.Color.Thistle;
+            this.lastOrdersDatagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Fuchsia;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.lastOrdersDatagrid.DefaultCellStyle = dataGridViewCellStyle4;
+            this.lastOrdersDatagrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lastOrdersDatagrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.lastOrdersDatagrid.GridColor = System.Drawing.Color.Plum;
+            this.lastOrdersDatagrid.Location = new System.Drawing.Point(3, 3);
+            this.lastOrdersDatagrid.MultiSelect = false;
+            this.lastOrdersDatagrid.Name = "lastOrdersDatagrid";
+            this.lastOrdersDatagrid.ReadOnly = true;
+            this.lastOrdersDatagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.lastOrdersDatagrid.ShowEditingIcon = false;
+            this.lastOrdersDatagrid.Size = new System.Drawing.Size(911, 285);
+            this.lastOrdersDatagrid.TabIndex = 2;
+            // 
             // kullancıAdLabel
             // 
             this.kullancıAdLabel.AutoSize = true;
@@ -235,41 +305,27 @@
             this.kullancıAdLabel.TabIndex = 8;
             this.kullancıAdLabel.Text = "Name Surname";
             // 
-            // graphic
-            // 
-            this.graphic.BorderlineColor = System.Drawing.Color.Indigo;
-            this.graphic.BorderlineWidth = 5;
-            chartArea1.Name = "ChartArea1";
-            this.graphic.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.graphic.Legends.Add(legend1);
-            this.graphic.Location = new System.Drawing.Point(546, 6);
-            this.graphic.Name = "graphic";
-            this.graphic.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Para";
-            this.graphic.Series.Add(series1);
-            this.graphic.Size = new System.Drawing.Size(365, 279);
-            this.graphic.TabIndex = 8;
-            this.graphic.Text = "chart1";
-            this.graphic.Click += new System.EventHandler(this.chart1_Click);
-            // 
             // kullaniciTipiLabel
             // 
             this.kullaniciTipiLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.kullaniciTipiLabel.AutoSize = true;
             this.kullaniciTipiLabel.BackColor = System.Drawing.Color.Transparent;
             this.kullaniciTipiLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.kullaniciTipiLabel.ForeColor = System.Drawing.Color.Plum;
-            this.kullaniciTipiLabel.Location = new System.Drawing.Point(866, 13);
+            this.kullaniciTipiLabel.Location = new System.Drawing.Point(609, 13);
             this.kullaniciTipiLabel.Name = "kullaniciTipiLabel";
             this.kullaniciTipiLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.kullaniciTipiLabel.Size = new System.Drawing.Size(70, 16);
+            this.kullaniciTipiLabel.Size = new System.Drawing.Size(327, 16);
             this.kullaniciTipiLabel.TabIndex = 9;
             this.kullaniciTipiLabel.Text = "----- User";
-            this.kullaniciTipiLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.kullaniciTipiLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(468, 11);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 10;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // main_form
             // 
@@ -277,6 +333,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Purple;
             this.ClientSize = new System.Drawing.Size(949, 753);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.kullaniciTipiLabel);
             this.Controls.Add(this.kullancıAdLabel);
             this.Controls.Add(this.tabControl1);
@@ -290,10 +347,13 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graphic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.urunlerDatagrid)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.transferlerDatgrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.graphic)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lastOrdersDatagrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,5 +375,8 @@
         private System.Windows.Forms.Label kullancıAdLabel;
         private System.Windows.Forms.DataVisualization.Charting.Chart graphic;
         private System.Windows.Forms.Label kullaniciTipiLabel;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridView lastOrdersDatagrid;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

@@ -12,7 +12,7 @@ namespace bitlancer
 {
     public partial class main_form : Form
     {
-        DataTable data;
+        DataTable itemData,lastOrdersData;
         User MyUser;
         int userID;
         public main_form(int userID)
@@ -28,30 +28,56 @@ namespace bitlancer
         }
         public void setUserToUI()
         {
-            this.dataGridView1.DataSource = data;
-            kullancıAdLabel.Text = MyUser.fullName;
-            switch (MyUser.userType)
+            try
             {
-                case bitlancer.userTypes.basic: kullaniciTipiLabel.Text = "Temel Kullanıcı";
-                    break;
-                case bitlancer.userTypes.admin: kullaniciTipiLabel.Text = "Üst Düzey Kullanıcı";
-                    break;
-                default: kullaniciTipiLabel.Text = "Temel Kullanıcı";
-                    break;
+                dataGridView1.DataSource = itemData;
+                lastOrdersDatagrid.DataSource = lastOrdersData;
+                foreach (DataGridViewRow row in lastOrdersDatagrid.Rows)
+                {
+                    if (row.Cells[1].Value.ToString()=="ALIM")
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Red;
+                    }
+                }
+                    
+                kullancıAdLabel.Text = MyUser.fullName;
+                switch (MyUser.userType)
+                {
+                    case bitlancer.userTypes.basic:
+                        kullaniciTipiLabel.Text = "Temel Kullanıcı";
+                        break;
+                    case bitlancer.userTypes.admin:
+                        kullaniciTipiLabel.Text = "Üst Düzey Kullanıcı";
+                        break;
+                    default:
+                        kullaniciTipiLabel.Text = "Temel Kullanıcı";
+                        break;
+                }
+                bakiyeLabel.Text = MyUser.money + " ₺";
+                urunlerDatagrid.DataSource = MyUser.items;
+                List<chartItemValue> chartItemList = new List<chartItemValue>();
+                if (MyUser.items!=null)
+                {
+                    foreach (item item in MyUser.items)
+                    {
+                        chartItemList.Add(new chartItemValue(item.itemName, item.quantity * item.unitPrice));
+                    }
+                }
+                graphic.DataSource = chartItemList;
+                graphic.Series["Para"].XValueMember = "itemName";
+                graphic.Series["Para"].YValueMembers = "val";
+                graphic.DataBind();
+                chartItemList.Clear();
+                transferlerDatgrid.DataSource = SingletonDB.GetInstance.getItemTransfers(MyUser.id);
             }
-            bakiyeLabel.Text = MyUser.money + " ₺";
-            urunlerDatagrid.DataSource = MyUser.items;
-            List<chartItemValue> chartItemList = new List<chartItemValue>();
-            foreach (item item in MyUser.items)
+            catch (Exception e)
             {
-                chartItemList.Add(new chartItemValue(item.itemName,item.quantity*item.unitPrice));
+                Console.WriteLine(e.Message);
             }
-            graphic.DataSource = chartItemList;
-            graphic.Series["Para"].XValueMember = "itemName";
-            graphic.Series["Para"].YValueMembers = "val";
-            graphic.DataBind();
-            chartItemList.Clear();
-            transferlerDatgrid.DataSource = SingletonDB.GetInstance.getItemTransfers(MyUser.id);
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -63,13 +89,19 @@ namespace bitlancer
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             MyUser = SingletonDB.GetInstance.getUser(userID);
-            data = SingletonDB.GetInstance.getItems();
-            
+            itemData = SingletonDB.GetInstance.getItems();
+            lastOrdersData = SingletonDB.GetInstance.getLastOrders(userID);
+
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             setUserToUI();
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            userID = Convert.ToInt32(numericUpDown1.Value);
         }
 
         private void chart1_Click(object sender, EventArgs e)

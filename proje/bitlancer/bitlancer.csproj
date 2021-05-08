@@ -57,6 +57,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmKullaniciKayit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmKullaniciKayit.Designer.cs">
+      <DependentUpon>FrmKullaniciKayit.cs</DependentUpon>
+    </Compile>
     <Compile Include="item.cs" />
     <Compile Include="main_form.cs">
       <SubType>Form</SubType>
@@ -75,6 +81,9 @@
     <Compile Include="User.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmKullaniciKayit.resx">
+      <DependentUpon>FrmKullaniciKayit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="main_form.resx">
       <DependentUpon>main_form.cs</DependentUpon>
@@ -104,6 +113,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sss.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sss1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

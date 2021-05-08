@@ -34,5 +34,11 @@ namespace bitlancer
         {
 
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FrmKullaniciKayit fr = new FrmKullaniciKayit();
+            fr.Show();
+        }
     }
 }

@@ -111,11 +111,11 @@ namespace bitlancer
                 orderForm order;
                 if (e.ColumnIndex==0)
                 {
-                    order = new orderForm("ALIM",Convert.ToInt32(mainItemsDataGrid[5, e.RowIndex].Value));
+                    order = new orderForm(bitlancer.orderTypes.buy,userID,Convert.ToInt32(mainItemsDataGrid[5, e.RowIndex].Value));
                 }
                 else
                 {
-                    order = new orderForm("SATIM", Convert.ToInt32(mainItemsDataGrid[5, e.RowIndex].Value));
+                    order = new orderForm(bitlancer.orderTypes.sell,userID, Convert.ToInt32(mainItemsDataGrid[5, e.RowIndex].Value));
                 }
                 order.ShowDialog();
             }

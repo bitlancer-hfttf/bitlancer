@@ -293,18 +293,26 @@ namespace bitlancer{
 			}
 			return dt;
 		}
-		public DataTable getLastOrders(int id=0)
+		public DataTable getLastOrders(int id=0,int item_id=0)
 		{
 			DataTable dt = new DataTable();
 			MySqlConnection connection = null;
 			MySqlCommand command = null;
-			string toUserOrder = (id != 0 ? "(CASE WHEN destination_user_id=" + id + " THEN 'ALIM' ELSE 'SATIM' END) as 'İşlem: '," : "");
-			string toAdmin= (id == 0 ? " (select user_full_name from users where id = o.destination_user_id) as 'Hedef:',(select user_full_name from users where id = o.source_user_id) as 'Kaynak: ',":"");
+			string toUserOrder ="",toAdmin="", whereClause="";
+			if (id!=0)
+            {
+				toUserOrder = "(CASE WHEN destination_user_id=" + id + " THEN 'ALIM' ELSE 'SATIM' END) as 'İşlem: ',";
+				whereClause = "where " + (item_id != 0 ? "item_id=" + item_id + " and (" : "")+ "destination_user_id=" + id + " or source_user_id=" + id+(item_id != 0 ? ")" : "");
+            }
+            else
+            {
+				toAdmin = " (select user_full_name from users where id = o.destination_user_id) as 'Hedef:',(select user_full_name from users where id = o.source_user_id) as 'Kaynak: ',";
+			}
 			try
 			{
 				connection = getConnection();
 				connection.Open();
-				command = new MySqlCommand("select row_number() over(order by id desc) as 'No:',"+toUserOrder+" order_date as 'Tarih:',"+toAdmin+" (select item_name from items where id = o.item_id) as 'Ürün:',(order_quantity * order_unit_price) as 'Tutar',(select quantity from item_user_infos where user_id = o.destination_user_id and item_id = 4) as 'Kalan Para:',order_unit_price as 'Birim Fiyat:' from item_orders o " + (id!=0?"where destination_user_id="+id+" or source_user_id="+id:""), connection);
+				command = new MySqlCommand("select row_number() over(order by id desc) as 'No:',"+toUserOrder+" order_date as 'Tarih:',"+toAdmin+" (select item_name from items where id = o.item_id) as 'Ürün:',(order_quantity * order_unit_price) as 'Tutar',(select quantity from item_user_infos where user_id = o.destination_user_id and item_id = 4) as 'Kalan Para:',order_unit_price as 'Birim Fiyat:' from item_orders o " + whereClause, connection);
 				dt.Load(command.ExecuteReader());
 			}
 			catch (Exception e)

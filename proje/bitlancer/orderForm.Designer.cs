@@ -29,16 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.quantity = new System.Windows.Forms.Label();
             this.itemPriceLabel = new System.Windows.Forms.Label();
+            this.quantityTextBox = new System.Windows.Forms.TextBox();
+            this.valTextBox = new System.Windows.Forms.TextBox();
+            this.buyButton = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.transferlerDatgrid = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transferlerDatgrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -53,23 +62,30 @@
             // 
             // chart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart.Legends.Add(legend3);
-            this.chart.Location = new System.Drawing.Point(12, 153);
+            chartArea2.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart.Legends.Add(legend2);
+            this.chart.Location = new System.Drawing.Point(12, 229);
             this.chart.Name = "chart";
-            series3.BorderWidth = 10;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series3.Legend = "Legend1";
-            series3.Name = "line";
-            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
-            series3.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series3.YValuesPerPoint = 6;
-            series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.chart.Series.Add(series3);
+            this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            series2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            series2.BorderWidth = 5;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series2.IsXValueIndexed = true;
+            series2.LabelAngle = 5;
+            series2.LabelToolTip = "#VAL{C2}";
+            series2.Legend = "Legend1";
+            series2.Name = "line";
+            series2.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.Round;
+            series2.SmartLabelStyle.CalloutLineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
+            series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series2.YValuesPerPoint = 5;
+            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.chart.Series.Add(series2);
             this.chart.Size = new System.Drawing.Size(781, 300);
             this.chart.TabIndex = 1;
             this.chart.Text = "chart1";
@@ -77,7 +93,7 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 150;
+            this.timer1.Interval = 250;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // backgroundWorker1
@@ -100,26 +116,115 @@
             // 
             this.itemPriceLabel.AutoSize = true;
             this.itemPriceLabel.Font = new System.Drawing.Font("Arial Black", 19F, System.Drawing.FontStyle.Bold);
-            this.itemPriceLabel.Location = new System.Drawing.Point(322, 72);
+            this.itemPriceLabel.Location = new System.Drawing.Point(323, 120);
             this.itemPriceLabel.Name = "itemPriceLabel";
             this.itemPriceLabel.Size = new System.Drawing.Size(103, 37);
             this.itemPriceLabel.TabIndex = 3;
             this.itemPriceLabel.Text = "label2";
             this.itemPriceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // quantityTextBox
+            // 
+            this.quantityTextBox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.quantityTextBox.Location = new System.Drawing.Point(19, 77);
+            this.quantityTextBox.Name = "quantityTextBox";
+            this.quantityTextBox.Size = new System.Drawing.Size(348, 35);
+            this.quantityTextBox.TabIndex = 4;
+            this.quantityTextBox.Text = "0";
+            // 
+            // valTextBox
+            // 
+            this.valTextBox.Enabled = false;
+            this.valTextBox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.valTextBox.Location = new System.Drawing.Point(413, 76);
+            this.valTextBox.Name = "valTextBox";
+            this.valTextBox.Size = new System.Drawing.Size(380, 35);
+            this.valTextBox.TabIndex = 6;
+            // 
+            // buyButton
+            // 
+            this.buyButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.buyButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buyButton.Font = new System.Drawing.Font("Bahnschrift", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.buyButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buyButton.Location = new System.Drawing.Point(19, 160);
+            this.buyButton.Name = "buyButton";
+            this.buyButton.Size = new System.Drawing.Size(774, 61);
+            this.buyButton.TabIndex = 7;
+            this.buyButton.Text = "AL";
+            this.buyButton.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::bitlancer.Properties.Resources.reverse_pngrepo_com;
+            this.pictureBox1.Location = new System.Drawing.Point(373, 77);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(34, 34);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
+            // transferlerDatgrid
+            // 
+            this.transferlerDatgrid.AllowDrop = true;
+            this.transferlerDatgrid.AllowUserToAddRows = false;
+            this.transferlerDatgrid.AllowUserToDeleteRows = false;
+            this.transferlerDatgrid.AllowUserToOrderColumns = true;
+            this.transferlerDatgrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.transferlerDatgrid.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.transferlerDatgrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.transferlerDatgrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.transferlerDatgrid.GridColor = System.Drawing.Color.Plum;
+            this.transferlerDatgrid.Location = new System.Drawing.Point(12, 563);
+            this.transferlerDatgrid.MultiSelect = false;
+            this.transferlerDatgrid.Name = "transferlerDatgrid";
+            this.transferlerDatgrid.ReadOnly = true;
+            this.transferlerDatgrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.transferlerDatgrid.ShowEditingIcon = false;
+            this.transferlerDatgrid.Size = new System.Drawing.Size(781, 172);
+            this.transferlerDatgrid.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial Black", 16F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(12, 532);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(163, 31);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Son Emirler:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // orderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(805, 585);
+            this.ClientSize = new System.Drawing.Size(805, 747);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.transferlerDatgrid);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.buyButton);
+            this.Controls.Add(this.valTextBox);
+            this.Controls.Add(this.quantityTextBox);
             this.Controls.Add(this.itemPriceLabel);
             this.Controls.Add(this.quantity);
             this.Controls.Add(this.chart);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "orderForm";
             this.Text = "orderForm";
             this.Load += new System.EventHandler(this.orderForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transferlerDatgrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,5 +238,11 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label quantity;
         private System.Windows.Forms.Label itemPriceLabel;
+        private System.Windows.Forms.TextBox quantityTextBox;
+        private System.Windows.Forms.TextBox valTextBox;
+        private System.Windows.Forms.Button buyButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridView transferlerDatgrid;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 07 May 2021, 19:23:25
+-- Üretim Zamanı: 10 May 2021, 12:37:05
 -- Sunucu sürümü: 10.4.10-MariaDB
 -- PHP Sürümü: 7.3.12
 
@@ -88,22 +88,37 @@ CREATE TABLE IF NOT EXISTS `item_orders` (
   `item_id` int(11) NOT NULL,
   `order_unit_price` double NOT NULL,
   `order_quantity` int(11) NOT NULL,
-  `order_type` varchar(2) COLLATE utf8_turkish_ci NOT NULL,
-  `order_state` int(11) NOT NULL,
   `order_date` varchar(255) COLLATE utf8_turkish_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `destination_user_id` (`destination_user_id`,`source_user_id`,`item_id`),
   KEY `source_user_id` (`source_user_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=785 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
 -- Tablo döküm verisi `item_orders`
 --
 
-INSERT INTO `item_orders` (`id`, `destination_user_id`, `source_user_id`, `item_id`, `order_unit_price`, `order_quantity`, `order_type`, `order_state`, `order_date`) VALUES
-(1, 4, 3, 2, 5, 510, '', 0, '2021-05-06'),
-(2, 3, 4, 3, 7.7, 1452, '', 0, '2021-05-06');
+INSERT INTO `item_orders` (`id`, `destination_user_id`, `source_user_id`, `item_id`, `order_unit_price`, `order_quantity`, `order_date`) VALUES
+(1, 4, 3, 2, 5, 510, '2021-05-06'),
+(2, 3, 4, 3, 7.7, 1452, '2021-05-06'),
+(22, 4, 3, 2, 5, 90, '9.05.2021 17:50:08'),
+(23, 4, 5, 2, 7.5, 10, '9.05.2021 17:50:09'),
+(33, 4, 3, 3, 1, 3000, '9.05.2021 19:16:11'),
+(34, 4, 5, 3, 12, 41, '9.05.2021 19:16:58'),
+(214, 4, 5, 3, 12, 2, '9.05.2021 19:28:06'),
+(215, 3, 5, 2, 7.5, 1, '9.05.2021 23:35:39'),
+(216, 3, 5, 2, 7.5, 1, '9.05.2021 23:36:34'),
+(217, 3, 4, 5, 7, 224, '10.05.2021 14:00:35'),
+(222, 4, 3, 5, 0, 132, '10.05.2021 14:36:47'),
+(665, 3, 4, 5, 0, 1000, '10.05.2021 14:42:54'),
+(666, 4, 3, 5, 1, 10, '10.05.2021 14:44:19'),
+(779, 3, 4, 5, 0, 10, '10.05.2021 14:48:36'),
+(780, 4, 3, 5, 1, 10, '10.05.2021 14:49:42'),
+(781, 4, 3, 5, 1, 10, '10.05.2021 14:51:52'),
+(782, 4, 3, 5, 1, 10, '10.05.2021 14:56:07'),
+(783, 4, 3, 5, 1, 10, '10.05.2021 14:59:30'),
+(784, 4, 3, 5, 1, 10, '10.05.2021 15:01:39');
 
 -- --------------------------------------------------------
 
@@ -118,22 +133,27 @@ CREATE TABLE IF NOT EXISTS `item_user_infos` (
   `item_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `unit_price` double NOT NULL,
+  `selling` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`,`item_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=625 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
 -- Tablo döküm verisi `item_user_infos`
 --
 
-INSERT INTO `item_user_infos` (`id`, `user_id`, `item_id`, `quantity`, `unit_price`) VALUES
-(1, 3, 2, 90, 5),
-(3, 4, 2, 7541, 12.8),
-(4, 3, 4, 1584, 1),
-(5, 4, 4, 10050, 1),
-(6, 3, 3, 1500, 12.45),
-(10, 4, 5, 45123, 1.46);
+INSERT INTO `item_user_infos` (`id`, `user_id`, `item_id`, `quantity`, `unit_price`, `selling`) VALUES
+(3, 4, 2, 110, 12.8, 1),
+(4, 3, 4, 9050, 1, 0),
+(30, 5, 2, 138, 7.5, 1),
+(44, 4, 3, 3043, 0, 0),
+(46, 5, 3, 1198, 12, 1),
+(47, 3, 2, 2, 0, 0),
+(48, 5, 4, 14, 0, 0),
+(59, 4, 4, 10950, 0, 0),
+(503, 3, 5, 980, 0, 0),
+(505, 4, 5, 1030, 15.698, 1);
 
 -- --------------------------------------------------------
 
@@ -154,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_type_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_type_id` (`user_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
 -- Tablo döküm verisi `users`
@@ -162,7 +182,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `user_full_name`, `user_name`, `user_password`, `user_address`, `user_mail`, `user_tc`, `user_tel`, `user_type_id`) VALUES
 (3, 'Muhammet Sezer Yıldırım', 'sezer_admin', '123', 'Çanakkale', 'asd@gmail.com', '65432156321', '5462133521', 5),
-(4, 'Enes Koyuncu', 'enesk', '123', 'izmir', 'asdas@gmail.com', '532156321', '653121321', 6);
+(4, 'Enes Koyuncu', 'enesk', '123', 'izmir', 'asdas@gmail.com', '532156321', '653121321', 6),
+(5, 'Simge', 'asd', 'asd', 'asd', 'asd', '213', '123', 6);
 
 -- --------------------------------------------------------
 

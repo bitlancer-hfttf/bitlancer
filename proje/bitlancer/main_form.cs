@@ -34,6 +34,11 @@ namespace bitlancer
                 mainItemsDataGrid.Columns[5].Visible = false;
                 lastOrdersDatagrid.DataSource = lastOrdersData;
                 urunlerDatagrid.DataSource = MyUser.items;
+                urunlerDatagrid.Columns[1].Visible = false;
+                urunlerDatagrid.Columns[2].HeaderText = "Para Birimi:";
+                urunlerDatagrid.Columns[3].Visible=false;
+                urunlerDatagrid.Columns[4].HeaderText = "Miktar:";
+                urunlerDatagrid.Columns[5].HeaderText = "Satışta:";
                 transferlerDatgrid.DataSource = userTransfers;
                 foreach (DataGridViewRow row in lastOrdersDatagrid.Rows)
                 {
@@ -66,7 +71,7 @@ namespace bitlancer
                 {
                     foreach (item item in MyUser.items)
                     {
-                        chartItemList.Add(new chartItemValue(item.itemName, item.quantity * item.unitPrice));
+                        chartItemList.Add(new chartItemValue(item.itemName, item.quantity));
                     }
                    graphic.DataSource = chartItemList;
                 }
@@ -117,6 +122,17 @@ namespace bitlancer
                 {
                     order = new orderForm(bitlancer.orderTypes.sell,userID, Convert.ToInt32(mainItemsDataGrid[5, e.RowIndex].Value));
                 }
+                order.ShowDialog();
+            }
+        }
+
+        private void urunlerDatagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0 && Convert.ToInt32(urunlerDatagrid[1, e.RowIndex].Value)!=4)
+            {
+                orderForm order = new orderForm(bitlancer.orderTypes.sell, userID, Convert.ToInt32(urunlerDatagrid[1, e.RowIndex].Value),true);
                 order.ShowDialog();
             }
         }

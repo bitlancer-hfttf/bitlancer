@@ -63,6 +63,16 @@ namespace bitlancer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ezgif_2_6d0b072c3d3f {
+            get {
+                object obj = ResourceManager.GetObject("ezgif-2-6d0b072c3d3f", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap reverse_pngrepo_com {
             get {
                 object obj = ResourceManager.GetObject("reverse-pngrepo-com", resourceCulture);

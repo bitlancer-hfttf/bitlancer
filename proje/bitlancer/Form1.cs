@@ -30,10 +30,6 @@ namespace bitlancer
             }
         }
 
-        private void logup_button_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

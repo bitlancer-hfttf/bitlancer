@@ -42,12 +42,18 @@
             this.quantityTextBox = new System.Windows.Forms.TextBox();
             this.valTextBox = new System.Windows.Forms.TextBox();
             this.buyButton = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.transferlerDatgrid = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
+            this.orderProcces = new System.ComponentModel.BackgroundWorker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.secondLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transferlerDatgrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -66,7 +72,7 @@
             this.chart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart.Legends.Add(legend1);
-            this.chart.Location = new System.Drawing.Point(12, 229);
+            this.chart.Location = new System.Drawing.Point(12, 233);
             this.chart.Name = "chart";
             this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
             series1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -116,7 +122,7 @@
             // 
             this.itemPriceLabel.AutoSize = true;
             this.itemPriceLabel.Font = new System.Drawing.Font("Arial Black", 19F, System.Drawing.FontStyle.Bold);
-            this.itemPriceLabel.Location = new System.Drawing.Point(323, 120);
+            this.itemPriceLabel.Location = new System.Drawing.Point(323, 123);
             this.itemPriceLabel.Name = "itemPriceLabel";
             this.itemPriceLabel.Size = new System.Drawing.Size(103, 37);
             this.itemPriceLabel.TabIndex = 3;
@@ -126,7 +132,7 @@
             // quantityTextBox
             // 
             this.quantityTextBox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.quantityTextBox.Location = new System.Drawing.Point(19, 77);
+            this.quantityTextBox.Location = new System.Drawing.Point(19, 90);
             this.quantityTextBox.Name = "quantityTextBox";
             this.quantityTextBox.Size = new System.Drawing.Size(348, 35);
             this.quantityTextBox.TabIndex = 4;
@@ -136,7 +142,7 @@
             // 
             this.valTextBox.Enabled = false;
             this.valTextBox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.valTextBox.Location = new System.Drawing.Point(413, 76);
+            this.valTextBox.Location = new System.Drawing.Point(413, 89);
             this.valTextBox.Name = "valTextBox";
             this.valTextBox.Size = new System.Drawing.Size(380, 35);
             this.valTextBox.TabIndex = 6;
@@ -147,22 +153,13 @@
             this.buyButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buyButton.Font = new System.Drawing.Font("Bahnschrift", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.buyButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.buyButton.Location = new System.Drawing.Point(19, 160);
+            this.buyButton.Location = new System.Drawing.Point(127, 163);
             this.buyButton.Name = "buyButton";
-            this.buyButton.Size = new System.Drawing.Size(774, 61);
+            this.buyButton.Size = new System.Drawing.Size(536, 61);
             this.buyButton.TabIndex = 7;
             this.buyButton.Text = "AL";
             this.buyButton.UseVisualStyleBackColor = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::bitlancer.Properties.Resources.reverse_pngrepo_com;
-            this.pictureBox1.Location = new System.Drawing.Point(373, 77);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 34);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
+            this.buyButton.Click += new System.EventHandler(this.buyButton_Click);
             // 
             // transferlerDatgrid
             // 
@@ -202,11 +199,72 @@
             this.label2.Text = "Son Emirler:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // orderProcces
+            // 
+            this.orderProcces.DoWork += new System.ComponentModel.DoWorkEventHandler(this.orderProcces_DoWork);
+            this.orderProcces.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.orderProcces_RunWorkerCompleted);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::bitlancer.Properties.Resources.reverse_pngrepo_com;
+            this.pictureBox1.Location = new System.Drawing.Point(373, 90);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(34, 34);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Enabled = false;
+            this.pictureBox2.Image = global::bitlancer.Properties.Resources.ezgif_2_6d0b072c3d3f;
+            this.pictureBox2.Location = new System.Drawing.Point(305, 9);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(165, 58);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(320, 232);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(150, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Emir İşleniyor Lütfen Bekleyin..";
+            this.label3.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 74);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Miktar:";
+            // 
+            // secondLabel
+            // 
+            this.secondLabel.AutoSize = true;
+            this.secondLabel.Location = new System.Drawing.Point(410, 74);
+            this.secondLabel.Name = "secondLabel";
+            this.secondLabel.Size = new System.Drawing.Size(73, 13);
+            this.secondLabel.TabIndex = 15;
+            this.secondLabel.Text = "Toplam Tutar:";
+            // 
             // orderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(805, 747);
+            this.Controls.Add(this.secondLabel);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.transferlerDatgrid);
             this.Controls.Add(this.pictureBox1);
@@ -223,8 +281,9 @@
             this.Text = "orderForm";
             this.Load += new System.EventHandler(this.orderForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transferlerDatgrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,5 +303,10 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridView transferlerDatgrid;
         private System.Windows.Forms.Label label2;
+        private System.ComponentModel.BackgroundWorker orderProcces;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label secondLabel;
     }
 }

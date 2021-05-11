@@ -34,7 +34,7 @@ namespace bitlancer
             this.money = 0;
             foreach (item item in items)
             {
-                this.money += item.quantity * item.unitPrice;
+                this.money += (double)item.quantity * item.unitPrice;
             }
         }
         public void addItems(item MyItem)

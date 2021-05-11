@@ -26,13 +26,27 @@ namespace bitlancer
             CheckForIllegalCrossThreadCalls = false;
             timer1.Start();
         }
+        public void setLastOrder()
+        {
+            lastOrdersDatagrid.DataSource = lastOrdersData;
+            foreach (DataGridViewRow row in lastOrdersDatagrid.Rows)
+            {
+                if (row.Cells[1].Value.ToString() == "ALIM")
+                {
+                    row.DefaultCellStyle.BackColor = Color.Green;
+                }
+                else
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
+        }
         public void setUserToUI()
         {
             try
             {
                 mainItemsDataGrid.DataSource = itemData;
                 mainItemsDataGrid.Columns[5].Visible = false;
-                lastOrdersDatagrid.DataSource = lastOrdersData;
                 urunlerDatagrid.DataSource = MyUser.items;
                 urunlerDatagrid.Columns[1].Visible = false;
                 urunlerDatagrid.Columns[2].HeaderText = "Para Birimi:";
@@ -40,18 +54,7 @@ namespace bitlancer
                 urunlerDatagrid.Columns[4].HeaderText = "Miktar:";
                 urunlerDatagrid.Columns[5].HeaderText = "Satışta:";
                 transferlerDatgrid.DataSource = userTransfers;
-                foreach (DataGridViewRow row in lastOrdersDatagrid.Rows)
-                {
-                    if (row.Cells[1].Value.ToString()=="ALIM")
-                    {
-                        row.DefaultCellStyle.BackColor = Color.Green;
-                    }
-                    else
-                    {
-                        row.DefaultCellStyle.BackColor = Color.Red;
-                    }
-                }
-                    
+                setLastOrder();
                 kullancıAdLabel.Text = MyUser.fullName;
                 switch (MyUser.userType)
                 {
@@ -71,7 +74,7 @@ namespace bitlancer
                 {
                     foreach (item item in MyUser.items)
                     {
-                        chartItemList.Add(new chartItemValue(item.itemName, item.quantity));
+                        chartItemList.Add(new chartItemValue((item.selling ? "Sş. " : "") + " " + item.itemName , item.quantity));
                     }
                    graphic.DataSource = chartItemList;
                 }
@@ -98,8 +101,8 @@ namespace bitlancer
         {
             itemData = SingletonDB.GetInstance.getItems();
             MyUser = SingletonDB.GetInstance.getUser(userID);
-            lastOrdersData = SingletonDB.GetInstance.getLastOrders(userID);
             userTransfers = SingletonDB.GetInstance.getItemTransfers(MyUser.id);
+            lastOrdersData = SingletonDB.GetInstance.getLastOrders(userID);
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

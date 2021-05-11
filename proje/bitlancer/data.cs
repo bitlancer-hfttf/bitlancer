@@ -383,7 +383,7 @@ namespace bitlancer{
 			{
 				connection = getConnection();
 				connection.Open();
-				command = new MySqlCommand("select * from item_user_infos inner join items on item_user_infos.item_id=items.id where user_id=" + id+" order by items.item_name", connection);
+				command = new MySqlCommand("select * from item_user_infos inner join items on item_user_infos.item_id=items.id where user_id=" + id, connection);
 				MySqlDataReader reader = command.ExecuteReader();
 				while (reader.Read())
 				{
@@ -457,7 +457,7 @@ namespace bitlancer{
 			}
 			return state;
         }
-		public bool updateAfterOrder(int selling,int sourceID,int itemID,int quantity,bool delete=false)
+		public bool updateAfterOrder(int selling,int sourceID,int itemID,int quantity,double unitPrice=1,bool delete=false)
         {
 			bool state = false; 
 			MySqlConnection connection = null;
@@ -477,7 +477,7 @@ namespace bitlancer{
                     }
                     else
                     {
-						sorgu = "insert into item_user_infos (user_id,item_id,quantity,unit_price,selling) values ("+sourceID+","+itemID+","+quantity+",0,0)";
+						sorgu = "insert into item_user_infos (user_id,item_id,quantity,unit_price,selling) values ("+sourceID+","+itemID+","+quantity+",'"+unitPrice.ToString().Replace(",",".")+"',0)";
                     }
                 }
 				connection = getConnection();
@@ -576,14 +576,14 @@ namespace bitlancer{
 				{
 					int sourceId = getId("select user_id from item_user_infos where item_id=" + itemID + " and unit_price=(select min(unit_price) from item_user_infos where item_id=" + itemID + " and (selling=1 and user_id!=" + userID + "))");
 					int sourceIdTL = getId("select quantity from item_user_infos where item_id=4 and user_id=" + sourceId);
-					double unitPrice = Convert.ToDouble(getDouble("select unit_price from item_user_infos where item_id=" + itemID + " and user_id=" + sourceId + ")"));
+					double unitPrice = getDouble("select unit_price from item_user_infos where selling=1 and (item_id=" + itemID + " and user_id=" + sourceId + ")");
 					if (tlITemQuantity >= (quantity * (int)unitPrice))
 					{
 						setItemOrder(sourceId, userID, itemID, quantity, unitPrice);
-						updateAfterOrder(1,sourceId, itemID, 0, true);
-						updateAfterOrder(0,userID, itemID, destItemqQuantity + quantity, false);
-						updateAfterOrder(0,userID, 4, tlITemQuantity - (quantity * (int)unitPrice), false);
-						updateAfterOrder(0, sourceId, 4, sourceIdTL + (quantity * (int)unitPrice));
+						updateAfterOrder(1,sourceId, itemID, 0,unitPrice, true);
+						updateAfterOrder(0,userID, itemID, destItemqQuantity + quantity,unitPrice);
+						updateAfterOrder(0,userID, 4, tlITemQuantity - (quantity * (int)unitPrice), 1);
+						updateAfterOrder(0, sourceId, 4, sourceIdTL + (quantity * (int)unitPrice),1);
 					}
 				}
 				else
@@ -597,7 +597,7 @@ namespace bitlancer{
 							if (sourceId != 0)
 							{
 								int sourceIdTL = getId("select quantity from item_user_infos where item_id=4 and user_id=" + sourceId);
-								double unitPrice = Convert.ToDouble(getDouble("select unit_price from item_user_infos where item_id=" + itemID + " and user_id=" + sourceId).ToString());
+								double unitPrice = getDouble("select unit_price from item_user_infos where selling=1 and (item_id=" + itemID + " and user_id=" + sourceId+")");
 								int miktar = minItemQuantity > quantity ? quantity : minItemQuantity;
 								if (tlITemQuantity < (miktar * (int)unitPrice))
 								{
@@ -607,12 +607,12 @@ namespace bitlancer{
 								{
 									setItemOrder(sourceId, userID, itemID, miktar, unitPrice);
 									if (minItemQuantity <= quantity)
-										updateAfterOrder(1, sourceId, itemID, 0, true);
+										updateAfterOrder(1, sourceId, itemID, 0,unitPrice, true);
 									else
-										updateAfterOrder(1, sourceId, itemID, minItemQuantity - miktar);
-									updateAfterOrder(0, userID, itemID, destItemqQuantity + miktar);
-									updateAfterOrder(0, userID, 4, tlITemQuantity - (miktar * (int)unitPrice));
-									updateAfterOrder(0, sourceId, 4, sourceIdTL + (miktar * (int)unitPrice));
+										updateAfterOrder(1, sourceId, itemID, minItemQuantity - miktar,unitPrice);
+									updateAfterOrder(0, userID, itemID, destItemqQuantity + miktar,unitPrice);
+									updateAfterOrder(0, userID, 4, tlITemQuantity - (miktar * (int)unitPrice),1);
+									updateAfterOrder(0, sourceId, 4, sourceIdTL + (miktar * (int)unitPrice),1);
 									quantity -= miktar;
 									destItemqQuantity += miktar;
 									minItemQuantity = getId("select quantity from item_user_infos where item_id=" + itemID + " and unit_price=(select min(unit_price) from item_user_infos where item_id=" + itemID + " and (selling=1 and user_id!=" + userID + "))");

@@ -16,20 +16,21 @@ namespace bitlancer
         {
             InitializeComponent();
         }
+
+
         
-        
-            MySqlConnection connection = new MySqlConnection("server=localhost;Database=bitlancer;user=root;pwd=;");
-            
        
         private void logup_button_Click(object sender, EventArgs e)
         {
-            connection.Open();
+           
+
             MySqlCommand command = new MySqlCommand("insert into users(user_full_name,user_name,user_password,user_address,user_mail,user_tc,user_tel,user_type_id) " +
-                "values ('" + fullname_textbox.Text + "','" + username_textbox.Text + "','" + userpassword_textbox.Text + "','" + address_richtextbox.Text + "','" + email_textbox.Text + "','" + tc_textbox.Text + "','" + mskTel.Text + "','"+6+"')", connection);
+                "values ('" + fullname_textbox.Text + "','" + username_textbox.Text + "','" + userpassword_textbox.Text + "','" + address_richtextbox.Text + "','" + email_textbox.Text + "','" + tc_textbox.Text + "','" + mskTel.Text + "','"+6+"')",SingletonDB.GetInstance.Connection());
+
             command.ExecuteNonQuery();
-            
+            SingletonDB.GetInstance.Connection().Close();
             MessageBox.Show("Kaydınız Gerçekleşmiştir.");
-            connection.Close();
+            
         }
     }
 }

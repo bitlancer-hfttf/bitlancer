@@ -24,6 +24,12 @@ namespace bitlancer{
 		private SingletonDB()
 		{
 		}
+		public MySqlConnection Connection()
+        {
+			MySqlConnection connect = new MySqlConnection("server=localhost;Database=bitlancer;uid=root;password=;");
+			connect.Open();
+			return connect;
+        }
 		public MySqlConnection getConnection()
 		{
 			MySqlConnection connection = null;

@@ -714,7 +714,6 @@ namespace bitlancer
 			return state;
 		}
 
-
 		public void uptadeAdminOnayDataGrid(int id, int state, string description)
 		{ 
 			MySqlConnection connection = null;

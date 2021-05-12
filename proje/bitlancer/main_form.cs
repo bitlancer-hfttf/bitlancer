@@ -60,12 +60,15 @@ namespace bitlancer
                 {
                     case bitlancer.userTypes.basic:
                         kullaniciTipiLabel.Text = "Temel Kullanıcı";
+                        adminButton.Visible = false;
                         break;
                     case bitlancer.userTypes.admin:
                         kullaniciTipiLabel.Text = "Üst Düzey Kullanıcı";
+                        adminButton.Visible = true;
                         break;
                     default:
                         kullaniciTipiLabel.Text = "Temel Kullanıcı";
+                        adminButton.Visible = false;
                         break;
                 }
                 bakiyeLabel.Text = MyUser.money + " ₺";
@@ -138,6 +141,12 @@ namespace bitlancer
                 orderForm order = new orderForm(bitlancer.orderTypes.sell, userID, Convert.ToInt32(urunlerDatagrid[1, e.RowIndex].Value),true);
                 order.ShowDialog();
             }
+        }
+
+        private void userInfoButton_Click(object sender, EventArgs e)
+        {
+            userForm userInfoForm = new userForm(MyUser);
+            userInfoForm.ShowDialog();
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)

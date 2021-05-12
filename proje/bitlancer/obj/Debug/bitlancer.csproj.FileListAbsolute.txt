@@ -42,3 +42,4 @@ C:\Users\simge\Documents\GitHub\bitlancer\proje\bitlancer\bin\Debug\MySql.Data.x
 C:\Users\simge\Documents\GitHub\bitlancer\proje\bitlancer\obj\Debug\bitlancer.csproj.CopyComplete
 C:\Users\simge\Documents\GitHub\bitlancer\proje\bitlancer\obj\Debug\bitlancer.FrmKullaniciKayit.resources
 E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.FrmKullaniciKayit.resources
+E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.userForm.resources

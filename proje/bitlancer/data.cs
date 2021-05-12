@@ -395,7 +395,7 @@ namespace bitlancer{
 				reader = command.ExecuteReader();
 				while (reader.Read())
 				{
-					myUser = new User(id, reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), reader[6].ToString() == "5" ? bitlancer.userTypes.admin : bitlancer.userTypes.basic,MyItems);
+					myUser = new User(id, reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), reader[6].ToString(), reader[7].ToString(), reader[8].ToString() == "5" ? bitlancer.userTypes.admin : bitlancer.userTypes.basic,MyItems);
 				}
 
 			}
@@ -676,6 +676,41 @@ namespace bitlancer{
 				}
 			}
 			return items;
+		}
+		public bool updateUser(int id,string userName,string fullName,string password,string tel,string mail,string address)
+        {
+			bool state = false;
+			MySqlConnection connection = null;
+			MySqlCommand command = null;
+			try
+			{
+				connection = getConnection();
+				connection.Open();
+				command = new MySqlCommand("update users set user_name='"+userName+ "', user_full_name='" + fullName + "', user_password='" + password + "', user_tel='" + tel + "', user_mail='" + mail + "', user_address='" + address + "' where id=" + id, connection);
+				command.ExecuteNonQuery();
+				state = true;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+				state = false;
+			}
+			finally
+			{
+				if (connection != null)
+				{
+					try
+					{//bağlantıları kapat
+						connection.Close();
+						command.Dispose();
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e.Message);
+					}
+				}
+			}
+			return state;
 		}
 	}
 }

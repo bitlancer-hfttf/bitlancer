@@ -26,38 +26,49 @@ namespace bitlancer
             CheckForIllegalCrossThreadCalls = false;
             timer1.Start();
         }
+        public void setLastOrder()
+        {
+            lastOrdersDatagrid.DataSource = lastOrdersData;
+            foreach (DataGridViewRow row in lastOrdersDatagrid.Rows)
+            {
+                if (row.Cells[1].Value.ToString() == "ALIM")
+                {
+                    row.DefaultCellStyle.BackColor = Color.Green;
+                }
+                else
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
+        }
         public void setUserToUI()
         {
             try
             {
                 mainItemsDataGrid.DataSource = itemData;
                 mainItemsDataGrid.Columns[5].Visible = false;
-                lastOrdersDatagrid.DataSource = lastOrdersData;
                 urunlerDatagrid.DataSource = MyUser.items;
+                urunlerDatagrid.Columns[1].Visible = false;
+                urunlerDatagrid.Columns[2].HeaderText = "Para Birimi:";
+                urunlerDatagrid.Columns[3].Visible=false;
+                urunlerDatagrid.Columns[4].HeaderText = "Miktar:";
+                urunlerDatagrid.Columns[5].HeaderText = "Satışta:";
                 transferlerDatgrid.DataSource = userTransfers;
-                foreach (DataGridViewRow row in lastOrdersDatagrid.Rows)
-                {
-                    if (row.Cells[1].Value.ToString()=="ALIM")
-                    {
-                        row.DefaultCellStyle.BackColor = Color.Green;
-                    }
-                    else
-                    {
-                        row.DefaultCellStyle.BackColor = Color.Red;
-                    }
-                }
-                    
+                setLastOrder();
                 kullancıAdLabel.Text = MyUser.fullName;
                 switch (MyUser.userType)
                 {
                     case bitlancer.userTypes.basic:
                         kullaniciTipiLabel.Text = "Temel Kullanıcı";
+                        adminButton.Visible = false;
                         break;
                     case bitlancer.userTypes.admin:
                         kullaniciTipiLabel.Text = "Üst Düzey Kullanıcı";
+                        adminButton.Visible = true;
                         break;
                     default:
                         kullaniciTipiLabel.Text = "Temel Kullanıcı";
+                        adminButton.Visible = false;
                         break;
                 }
                 bakiyeLabel.Text = MyUser.money + " ₺";
@@ -66,7 +77,7 @@ namespace bitlancer
                 {
                     foreach (item item in MyUser.items)
                     {
-                        chartItemList.Add(new chartItemValue(item.itemName, item.quantity * item.unitPrice));
+                        chartItemList.Add(new chartItemValue((item.selling ? "Sş. " : "") + " " + item.itemName , item.quantity));
                     }
                    graphic.DataSource = chartItemList;
                 }
@@ -93,8 +104,8 @@ namespace bitlancer
         {
             itemData = SingletonDB.GetInstance.getItems();
             MyUser = SingletonDB.GetInstance.getUser(userID);
-            lastOrdersData = SingletonDB.GetInstance.getLastOrders(userID);
             userTransfers = SingletonDB.GetInstance.getItemTransfers(MyUser.id);
+            lastOrdersData = SingletonDB.GetInstance.getLastOrders(userID);
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -111,23 +122,37 @@ namespace bitlancer
                 orderForm order;
                 if (e.ColumnIndex==0)
                 {
-                    order = new orderForm("ALIM",Convert.ToInt32(mainItemsDataGrid[5, e.RowIndex].Value));
+                    order = new orderForm(bitlancer.orderTypes.buy,userID,Convert.ToInt32(mainItemsDataGrid[5, e.RowIndex].Value));
                 }
                 else
                 {
-                    order = new orderForm("SATIM", Convert.ToInt32(mainItemsDataGrid[5, e.RowIndex].Value));
+                    order = new orderForm(bitlancer.orderTypes.sell,userID, Convert.ToInt32(mainItemsDataGrid[5, e.RowIndex].Value));
                 }
                 order.ShowDialog();
             }
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void urunlerDatagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            userID = Convert.ToInt32(numericUpDown1.Value);
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0 && Convert.ToInt32(urunlerDatagrid[1, e.RowIndex].Value)!=4)
+            {
+                orderForm order = new orderForm(bitlancer.orderTypes.sell, userID, Convert.ToInt32(urunlerDatagrid[1, e.RowIndex].Value),true);
+                order.ShowDialog();
+            }
         }
 
-        private void chart1_Click(object sender, EventArgs e)
+        private void userInfoButton_Click(object sender, EventArgs e)
         {
+            userForm userInfoForm = new userForm(MyUser);
+            userInfoForm.ShowDialog();
+        }
+
+        private void adminButton_Click(object sender, EventArgs e)
+        {
+            adminOnay admin = new adminOnay();
+            admin.ShowDialog();
         }
     }
 }

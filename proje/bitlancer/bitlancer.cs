@@ -13,5 +13,10 @@ namespace bitlancer
             basic,
             admin
         }
+        public enum orderTypes
+        {
+            buy,
+            sell
+        }
     }
 }

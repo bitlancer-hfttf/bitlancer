@@ -63,6 +63,37 @@ namespace bitlancer.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap ezgif_2_6d0b072c3d3f {
+            get {
+                object obj = ResourceManager.GetObject("ezgif-2-6d0b072c3d3f", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgbin_recep_tayyip_erdo_an_reis_president_of_turkey_justice_and_development_party_y_celer_k_y_others_GNj1G4F3S6F8YqDx2yLcBM4mP {
+            get {
+                object obj = ResourceManager.GetObject("imgbin-recep-tayyip-erdo-an-reis-president-of-turkey-justice-and-development-part" +
+                        "y-y-celer-k-y-others-GNj1G4F3S6F8YqDx2yLcBM4mP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap reverse_pngrepo_com {
+            get {
+                object obj = ResourceManager.GetObject("reverse-pngrepo-com", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap sss {
             get {
                 object obj = ResourceManager.GetObject("sss", resourceCulture);

@@ -63,7 +63,6 @@
             this.lastOrdersDatagrid = new System.Windows.Forms.DataGridView();
             this.kullancıAdLabel = new System.Windows.Forms.Label();
             this.kullaniciTipiLabel = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.mainItemsDataGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -73,7 +72,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.transferlerDatgrid)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lastOrdersDatagrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainItemsDataGrid
@@ -249,7 +247,6 @@
             this.graphic.Text = "chart1";
             title1.Name = "miktar";
             this.graphic.Titles.Add(title1);
-            this.graphic.Click += new System.EventHandler(this.chart1_Click);
             // 
             // label3
             // 
@@ -427,7 +424,7 @@
             this.kullaniciTipiLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.kullaniciTipiLabel.BackColor = System.Drawing.Color.Transparent;
             this.kullaniciTipiLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.kullaniciTipiLabel.ForeColor = System.Drawing.Color.Plum;
+            this.kullaniciTipiLabel.ForeColor = System.Drawing.Color.MediumPurple;
             this.kullaniciTipiLabel.Location = new System.Drawing.Point(606, 13);
             this.kullaniciTipiLabel.Name = "kullaniciTipiLabel";
             this.kullaniciTipiLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -436,21 +433,12 @@
             this.kullaniciTipiLabel.Text = "----- User";
             this.kullaniciTipiLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(468, 11);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 10;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
-            // 
             // main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(946, 753);
-            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.kullaniciTipiLabel);
             this.Controls.Add(this.kullancıAdLabel);
             this.Controls.Add(this.tabControl1);
@@ -470,7 +458,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.transferlerDatgrid)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lastOrdersDatagrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -494,7 +481,6 @@
         private System.Windows.Forms.Label kullaniciTipiLabel;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView lastOrdersDatagrid;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.DataGridViewButtonColumn butButton;
         private System.Windows.Forms.DataGridViewButtonColumn sellButton;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;

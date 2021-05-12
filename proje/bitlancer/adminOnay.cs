@@ -41,22 +41,7 @@ namespace bitlancer
 
             SingletonDB.GetInstance.uptadeAdminOnayDataGrid(_id, state,description);
             SingletonDB.GetInstance.updateAfterOrder(0, user_id, item_id,(itemQuantity + quantity));
-
-            
-
-            
-
             veriReset();
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtAdminOnay_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

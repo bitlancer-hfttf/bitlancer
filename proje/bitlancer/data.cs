@@ -350,7 +350,7 @@ namespace bitlancer
 			{
 				connection = getConnection();
 				connection.Open();
-				command = new MySqlCommand("select (row_number() over(order by id desc) as 'No:'," + toUserOrder + " order_date as 'Tarih:'," + toAdmin + " (select item_name from items where id = o.item_id) as 'Ürün:',(order_quantity * order_unit_price) as 'Tutar:',(select quantity from item_user_infos where user_id = " + id + " and item_id = 4) as 'Kalan Para:',order_unit_price as 'Birim Fiyat:' from item_orders o " + whereClause, connection);
+				command = new MySqlCommand("select row_number() over(order by id desc) as 'No:'," + toUserOrder + " order_date as 'Tarih:'," + toAdmin + " (select item_name from items where id = o.item_id) as 'Ürün:',(order_quantity * order_unit_price) as 'Tutar:',(select quantity from item_user_infos where user_id = " + id + " and item_id = 4) as 'Kalan Para:',order_unit_price as 'Birim Fiyat:' from item_orders o " + whereClause, connection);
 				dt.Load(command.ExecuteReader());
 			}
 			catch (Exception e)

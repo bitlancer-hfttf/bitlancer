@@ -179,7 +179,7 @@
             // adminButton
             // 
             this.adminButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.adminButton.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adminButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adminButton.ForeColor = System.Drawing.Color.Blue;
             this.adminButton.Location = new System.Drawing.Point(279, 6);
             this.adminButton.Name = "adminButton";
@@ -188,6 +188,7 @@
             this.adminButton.Text = "Admin Panel";
             this.adminButton.UseVisualStyleBackColor = true;
             this.adminButton.Visible = false;
+            this.adminButton.Click += new System.EventHandler(this.adminButton_Click);
             // 
             // label2
             // 
@@ -204,7 +205,7 @@
             // addItemButton
             // 
             this.addItemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addItemButton.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addItemButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addItemButton.ForeColor = System.Drawing.Color.ForestGreen;
             this.addItemButton.Location = new System.Drawing.Point(368, 6);
             this.addItemButton.Name = "addItemButton";
@@ -216,7 +217,7 @@
             // userInfoButton
             // 
             this.userInfoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.userInfoButton.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userInfoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userInfoButton.ForeColor = System.Drawing.Color.OrangeRed;
             this.userInfoButton.Location = new System.Drawing.Point(457, 6);
             this.userInfoButton.Name = "userInfoButton";

@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adminOnay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminOnay.Designer.cs">
+      <DependentUpon>adminOnay.cs</DependentUpon>
+    </Compile>
     <Compile Include="bitlancer.cs" />
     <Compile Include="chartItemValue.cs" />
     <Compile Include="orderUpdateItem.cs" />
@@ -91,6 +97,9 @@
     <Compile Include="userForm.Designer.cs">
       <DependentUpon>userForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="adminOnay.resx">
+      <DependentUpon>adminOnay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -149,6 +149,12 @@ namespace bitlancer
             userInfoForm.ShowDialog();
         }
 
+        private void adminButton_Click(object sender, EventArgs e)
+        {
+            adminOnay admin = new adminOnay();
+            admin.ShowDialog();
+        }
+
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             userID = Convert.ToInt32(numericUpDown1.Value);

@@ -25,12 +25,6 @@ namespace bitlancer
 		private SingletonDB()
 		{
 		}
-		public MySqlConnection Connection()
-        {
-			MySqlConnection connect = new MySqlConnection("server=localhost;Database=bitlancer;uid=root;password=;");
-			connect.Open();
-			return connect;
-        }
 		public MySqlConnection getConnection()
 		{
 			MySqlConnection connection = null;
@@ -719,7 +713,6 @@ namespace bitlancer
 			}
 			return state;
 		}
-
 		public void uptadeAdminOnayDataGrid(int id, int state, string description)
 		{ 
 			MySqlConnection connection = null;
@@ -784,6 +777,41 @@ namespace bitlancer
 				}
 			}
 			return dt;
+		}
+		public bool userRegister(string userFullName,string userName, string userPassword, string userAddres,string userMail,string userTc,string userTel)
+		{
+			bool state = false;
+			MySqlConnection connection = null;
+			MySqlCommand command = null;
+			try
+			{
+				connection = getConnection();
+				connection.Open();
+				command = new MySqlCommand("insert into users(user_full_name,user_name,user_password,user_address,user_mail,user_tc,user_tel,user_type_id) values ('" + userFullName+"','" +userName + "','" + userPassword+"','" + userAddres + "','" + userMail + "','" + userTc+ "','" + userTel + "','" + 6 + "')", connection);
+				command.ExecuteNonQuery();
+				state = true;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+				state = false;
+			}
+			finally
+			{
+				if (connection != null)
+				{
+					try
+					{//bağlantıları kapat
+						connection.Close();
+						command.Dispose();
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e.Message);
+					}
+				}
+			}
+			return state;
 		}
 	}
 }

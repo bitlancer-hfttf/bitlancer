@@ -49,7 +49,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(766, 464);
             this.panel1.TabIndex = 0;
@@ -77,7 +77,7 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(194, 140);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(356, 304);
             this.panel2.TabIndex = 3;
@@ -87,7 +87,7 @@
             this.button2.BackColor = System.Drawing.Color.MediumPurple;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.button2.Location = new System.Drawing.Point(130, 198);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(102, 46);
             this.button2.TabIndex = 6;
@@ -112,8 +112,9 @@
             // 
             this.userpassword_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.userpassword_textbox.Location = new System.Drawing.Point(158, 131);
-            this.userpassword_textbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.userpassword_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.userpassword_textbox.Name = "userpassword_textbox";
+            this.userpassword_textbox.PasswordChar = '*';
             this.userpassword_textbox.Size = new System.Drawing.Size(174, 30);
             this.userpassword_textbox.TabIndex = 4;
             // 
@@ -133,7 +134,7 @@
             // 
             this.username_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.username_textbox.Location = new System.Drawing.Point(158, 84);
-            this.username_textbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.username_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.username_textbox.Name = "username_textbox";
             this.username_textbox.Size = new System.Drawing.Size(174, 30);
             this.username_textbox.TabIndex = 2;
@@ -169,6 +170,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(766, 464);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "loginForm";
             this.Text = "Kullanıcı Girişi";
             this.panel1.ResumeLayout(false);

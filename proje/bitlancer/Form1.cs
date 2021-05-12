@@ -24,9 +24,17 @@ namespace bitlancer
                 if (currentUser!=0)
                 {
                     main_form main = new main_form(currentUser);
-                    main.Show();
                     this.Hide();
+                    main.Show();
                 }
+                else
+                {
+                    MessageBox.Show("Lütfen geçerli giriş yapın!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lütfen geçerli giriş yapın!");
             }
         }
 
@@ -34,7 +42,7 @@ namespace bitlancer
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             FrmKullaniciKayit fr = new FrmKullaniciKayit();
-            fr.Show();
+            fr.ShowDialog();
         }
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 10 May 2021, 12:37:05
+-- Üretim Zamanı: 16 May 2021, 18:34:18
 -- Sunucu sürümü: 10.4.10-MariaDB
 -- PHP Sürümü: 7.3.12
 
@@ -64,15 +64,17 @@ CREATE TABLE IF NOT EXISTS `item_adds` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
 -- Tablo döküm verisi `item_adds`
 --
 
 INSERT INTO `item_adds` (`id`, `user_id`, `item_id`, `quantity`, `unit_price`, `date`, `state`, `description`) VALUES
-(1, 4, 2, 150, 5, '2021-05-06', 1, 'TAMAMLANDI'),
-(2, 3, 4, 1200, 1, '2021-05-07', 0, 'BEKLENİYOR');
+(1, 4, 2, 150, 1, '2021-05-06', 1, 'TAMAMLANDI'),
+(2, 3, 4, 1200, 1, '2021-05-07', 1, 'TAMAMLANDI.'),
+(3, 5, 4, 3000, 1, '2021-15-2', 1, 'TAmamlandı'),
+(4, 4, 3, 1500, 1, '16.05.2021 15:33:50', 0, 'BEKLENİYOR');
 
 -- --------------------------------------------------------
 
@@ -93,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `item_orders` (
   KEY `destination_user_id` (`destination_user_id`,`source_user_id`,`item_id`),
   KEY `source_user_id` (`source_user_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=785 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=802 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
 -- Tablo döküm verisi `item_orders`
@@ -118,7 +120,24 @@ INSERT INTO `item_orders` (`id`, `destination_user_id`, `source_user_id`, `item_
 (781, 4, 3, 5, 1, 10, '10.05.2021 14:51:52'),
 (782, 4, 3, 5, 1, 10, '10.05.2021 14:56:07'),
 (783, 4, 3, 5, 1, 10, '10.05.2021 14:59:30'),
-(784, 4, 3, 5, 1, 10, '10.05.2021 15:01:39');
+(784, 4, 3, 5, 1, 10, '10.05.2021 15:01:39'),
+(785, 4, 3, 5, 10, 10, '10.05.2021 22:01:56'),
+(786, 3, 4, 5, 1, 1040, '10.05.2021 23:49:00'),
+(787, 4, 5, 2, 7.5, 2, '10.05.2021 23:50:31'),
+(788, 4, 5, 2, 7.5, 136, '11.05.2021 19:13:42'),
+(789, 4, 5, 2, 1, 10, '11.05.2021 19:21:56'),
+(790, 4, 5, 2, 1, 12, '11.05.2021 19:27:56'),
+(791, 4, 3, 5, 0, 2, '11.05.2021 19:28:18'),
+(792, 4, 3, 5, 0, 2, '11.05.2021 19:29:31'),
+(793, 4, 3, 5, 0, 2, '11.05.2021 19:31:52'),
+(794, 4, 3, 5, 0, 2, '11.05.2021 19:32:32'),
+(795, 4, 3, 5, 0, 2, '11.05.2021 19:34:04'),
+(796, 4, 3, 5, 10, 2, '11.05.2021 19:36:25'),
+(797, 4, 3, 5, 10, 2, '11.05.2021 19:37:53'),
+(798, 4, 3, 5, 10, 2, '11.05.2021 19:38:56'),
+(799, 4, 3, 5, 10, 2, '11.05.2021 19:47:50'),
+(800, 4, 3, 5, 10, 2, '11.05.2021 19:47:56'),
+(801, 3, 4, 5, 9.5, 6, '11.05.2021 19:50:35');
 
 -- --------------------------------------------------------
 
@@ -137,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `item_user_infos` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`,`item_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=625 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=634 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
 -- Tablo döküm verisi `item_user_infos`
@@ -145,15 +164,15 @@ CREATE TABLE IF NOT EXISTS `item_user_infos` (
 
 INSERT INTO `item_user_infos` (`id`, `user_id`, `item_id`, `quantity`, `unit_price`, `selling`) VALUES
 (3, 4, 2, 110, 12.8, 1),
-(4, 3, 4, 9050, 1, 0),
-(30, 5, 2, 138, 7.5, 1),
-(44, 4, 3, 3043, 0, 0),
+(4, 3, 4, 9356, 1, 0),
+(44, 4, 3, 3043, 12, 0),
 (46, 5, 3, 1198, 12, 1),
-(47, 3, 2, 2, 0, 0),
-(48, 5, 4, 14, 0, 0),
-(59, 4, 4, 10950, 0, 0),
-(503, 3, 5, 980, 0, 0),
-(505, 4, 5, 1030, 15.698, 1);
+(47, 3, 2, 2, 1, 0),
+(59, 4, 4, 11808, 1, 0),
+(503, 3, 5, 956, 10, 1),
+(626, 3, 5, 1046, 10, 0),
+(627, 4, 2, 160, 1, 0),
+(629, 5, 2, 930, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -174,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_type_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_type_id` (`user_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
 -- Tablo döküm verisi `users`
@@ -182,8 +201,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `user_full_name`, `user_name`, `user_password`, `user_address`, `user_mail`, `user_tc`, `user_tel`, `user_type_id`) VALUES
 (3, 'Muhammet Sezer Yıldırım', 'sezer_admin', '123', 'Çanakkale', 'asd@gmail.com', '65432156321', '5462133521', 5),
-(4, 'Enes Koyuncu', 'enesk', '123', 'izmir', 'asdas@gmail.com', '532156321', '653121321', 6),
-(5, 'Simge', 'asd', 'asd', 'asd', 'asd', '213', '123', 6);
+(4, 'Enes Koyuncu', 'enesc', '', 'İzmir', 'asdas@gmail.com', '532156321', '(545) 224-6932', 6),
+(5, 'Simge', 'asd', 'asd', 'asd', 'asd', '213', '123', 6),
+(6, 'Ali Eren Eriş', 'eren', '123', 'asdasdasd', 'asdasdasd', '123123', '(456) 421-2112', 6);
 
 -- --------------------------------------------------------
 

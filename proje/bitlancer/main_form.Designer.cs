@@ -211,6 +211,7 @@
             this.addItemButton.TabIndex = 10;
             this.addItemButton.Text = "Bakiye Yükle";
             this.addItemButton.UseVisualStyleBackColor = true;
+            this.addItemButton.Click += new System.EventHandler(this.addItemButton_Click);
             // 
             // userInfoButton
             // 

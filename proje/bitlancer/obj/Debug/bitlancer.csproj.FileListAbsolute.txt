@@ -61,3 +61,4 @@ C:\Users\enesk\OneDrive\Documents\GitHub\bitlancer\proje\bitlancer\obj\Debug\bit
 C:\Users\enesk\OneDrive\Documents\GitHub\bitlancer\proje\bitlancer\obj\Debug\bitlancer.exe
 C:\Users\enesk\OneDrive\Documents\GitHub\bitlancer\proje\bitlancer\obj\Debug\bitlancer.pdb
 E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.adminOnay.resources
+E:\projects\bitlancer\proje\bitlancer\obj\Debug\bitlancer.Transfer.resources

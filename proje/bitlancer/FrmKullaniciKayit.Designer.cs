@@ -57,7 +57,7 @@ namespace bitlancer
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(727, 457);
             this.panel1.TabIndex = 0;
@@ -82,7 +82,7 @@ namespace bitlancer
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(195, 25);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(302, 422);
             this.panel2.TabIndex = 0;
@@ -91,7 +91,7 @@ namespace bitlancer
             // 
             this.tc_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.tc_textbox.Location = new System.Drawing.Point(110, 152);
-            this.tc_textbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tc_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.tc_textbox.Name = "tc_textbox";
             this.tc_textbox.Size = new System.Drawing.Size(155, 27);
             this.tc_textbox.TabIndex = 17;
@@ -113,7 +113,7 @@ namespace bitlancer
             this.logup_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.logup_button.ForeColor = System.Drawing.Color.Black;
             this.logup_button.Location = new System.Drawing.Point(110, 360);
-            this.logup_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.logup_button.Margin = new System.Windows.Forms.Padding(2);
             this.logup_button.Name = "logup_button";
             this.logup_button.Size = new System.Drawing.Size(154, 40);
             this.logup_button.TabIndex = 15;
@@ -125,7 +125,7 @@ namespace bitlancer
             // 
             this.mskTel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.mskTel.Location = new System.Drawing.Point(110, 183);
-            this.mskTel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mskTel.Margin = new System.Windows.Forms.Padding(2);
             this.mskTel.Mask = "(999) 000-0000";
             this.mskTel.Name = "mskTel";
             this.mskTel.Size = new System.Drawing.Size(155, 27);
@@ -134,7 +134,7 @@ namespace bitlancer
             // address_richtextbox
             // 
             this.address_richtextbox.Location = new System.Drawing.Point(110, 244);
-            this.address_richtextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.address_richtextbox.Margin = new System.Windows.Forms.Padding(2);
             this.address_richtextbox.Name = "address_richtextbox";
             this.address_richtextbox.Size = new System.Drawing.Size(155, 89);
             this.address_richtextbox.TabIndex = 13;
@@ -144,7 +144,7 @@ namespace bitlancer
             // 
             this.email_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.email_textbox.Location = new System.Drawing.Point(110, 213);
-            this.email_textbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.email_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.email_textbox.Name = "email_textbox";
             this.email_textbox.Size = new System.Drawing.Size(155, 27);
             this.email_textbox.TabIndex = 12;
@@ -153,7 +153,7 @@ namespace bitlancer
             // 
             this.userpassword_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.userpassword_textbox.Location = new System.Drawing.Point(110, 122);
-            this.userpassword_textbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.userpassword_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.userpassword_textbox.Name = "userpassword_textbox";
             this.userpassword_textbox.PasswordChar = '*';
             this.userpassword_textbox.Size = new System.Drawing.Size(155, 27);
@@ -163,7 +163,7 @@ namespace bitlancer
             // 
             this.username_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.username_textbox.Location = new System.Drawing.Point(110, 92);
-            this.username_textbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.username_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.username_textbox.Name = "username_textbox";
             this.username_textbox.Size = new System.Drawing.Size(155, 27);
             this.username_textbox.TabIndex = 10;
@@ -172,7 +172,7 @@ namespace bitlancer
             // 
             this.fullname_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.fullname_textbox.Location = new System.Drawing.Point(110, 62);
-            this.fullname_textbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.fullname_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.fullname_textbox.Name = "fullname_textbox";
             this.fullname_textbox.Size = new System.Drawing.Size(155, 27);
             this.fullname_textbox.TabIndex = 9;
@@ -261,10 +261,10 @@ namespace bitlancer
             this.ClientSize = new System.Drawing.Size(727, 457);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "FrmKullaniciKayit";
-            this.Text = "FrmKullaniciKayit";
+            this.Text = "Kullanıcı kaydı";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

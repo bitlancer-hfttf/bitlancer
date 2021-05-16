@@ -27,6 +27,7 @@ namespace bitlancer
         {
             adminOnayDataGrid.DataSource = SingletonDB.GetInstance.GetTable("SELECT i.id as 'İşlem No:',i.user_id as 'Kişi No:',(select user_full_name from users where id = i.user_id) as 'Kişi:',i.item_id as 'P.B. No:',(select item_name from items where id = i.item_id) as 'Para Birimi:',quantity as 'Miktar:',date as 'Tarih:',state as 'Durum:',description as 'Açıklama:'from item_adds i where state = 0");
             adminOnayDataGrid2.DataSource = SingletonDB.GetInstance.GetTable("SELECT i.id as 'İşlem No:',i.user_id as 'Kişi No:',(select user_full_name from users where id = i.user_id) as 'Kişi:',i.item_id as 'P.B. No:',(select item_name from items where id = i.item_id) as 'Para Birimi:',quantity as 'Miktar:',date as 'Tarih:',state as 'Durum:',description as 'Açıklama:'from item_adds i where state = 1");
+            orderGrid.DataSource = SingletonDB.GetInstance.getLastOrders();
         }
 
         private void btnAdminOnay_Click(object sender, EventArgs e)

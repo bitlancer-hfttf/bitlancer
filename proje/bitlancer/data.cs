@@ -224,6 +224,47 @@ namespace bitlancer
 			}
 			return myItem;
 		}
+		public List<item> getItemBitlancer()
+		{
+			List<item> items=new List<item>();
+			MySqlConnection connection = null;
+			MySqlCommand command = null;
+			try
+			{
+				connection = getConnection();
+				connection.Open();
+				command = new MySqlCommand("select * from items", connection);
+				command.Connection = connection;
+				MySqlDataReader read = command.ExecuteReader();
+				while (read.Read())
+				{
+					item urun = new item();
+					urun.id = Convert.ToInt32(read[0]);
+					urun.itemName = read[1].ToString();
+					items.Add(urun);
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("hata: " + e.Message);
+			}
+			finally
+			{
+				if (connection != null)
+				{
+					try
+					{
+						connection.Close();
+						command.Dispose();
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e.Message);
+					}
+				}
+			}
+			return items;
+		}
 		public DataTable getItems()
 		{
 			DataTable dt = new DataTable();
@@ -331,6 +372,42 @@ namespace bitlancer
 			}
 			return dt;
 		}
+		public bool setItemTransfer(int userID,int itemID,int quantity)
+		{
+			bool state = false;
+			MySqlConnection connection = null;
+			MySqlCommand command = null;
+			try
+			{
+				connection = getConnection();
+				connection.Open();
+				Random rnd = new Random();
+				command = new MySqlCommand("insert into item_adds(user_id,item_id,quantity,unit_price,state,description,date) values("+userID+","+itemID+","+quantity+",1,0,'BEKLENİYOR','"+DateTime.Now.ToString()+"')", connection);
+				command.ExecuteNonQuery();
+				state = true;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+				state = false;
+			}
+			finally
+			{
+				if (connection != null)
+				{
+					try
+					{//bağlantıları kapat
+						connection.Close();
+						command.Dispose();
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e.Message);
+					}
+				}
+			}
+			return state;
+		}
 		public DataTable getLastOrders(int id = 0, int item_id = 0)
 		{
 			DataTable dt = new DataTable();
@@ -350,7 +427,7 @@ namespace bitlancer
 			{
 				connection = getConnection();
 				connection.Open();
-				command = new MySqlCommand("select row_number() over(order by id desc) as 'No:'," + toUserOrder + " order_date as 'Tarih:'," + toAdmin + " (select item_name from items where id = o.item_id) as 'Ürün:',(order_quantity * order_unit_price) as 'Tutar:',(select quantity from item_user_infos where user_id = " + id + " and item_id = 4) as 'Kalan Para:',order_unit_price as 'Birim Fiyat:' from item_orders o " + whereClause, connection);
+				command = new MySqlCommand("select row_number() over(order by id desc) as 'No:'," + toUserOrder + " order_date as 'Tarih:'," + toAdmin + " (select item_name from items where id = o.item_id) as 'Ürün:',(order_quantity * order_unit_price) as 'Tutar:',(select quantity from item_user_infos where user_id = " + (id!=0?id.ToString():"o.destination_user_id") + " and item_id = 4) as 'Kalan Para:',order_unit_price as 'Birim Fiyat:' from item_orders o " + whereClause, connection);
 				dt.Load(command.ExecuteReader());
 			}
 			catch (Exception e)

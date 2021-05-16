@@ -54,6 +54,7 @@ namespace bitlancer
                 urunlerDatagrid.Columns[4].HeaderText = "Miktar:";
                 urunlerDatagrid.Columns[5].HeaderText = "Satışta:";
                 transferlerDatgrid.DataSource = userTransfers;
+                transferlerDatgrid.Columns[2].Visible = false;
                 setLastOrder();
                 kullancıAdLabel.Text = MyUser.fullName;
                 switch (MyUser.userType)
@@ -141,6 +142,12 @@ namespace bitlancer
                 orderForm order = new orderForm(bitlancer.orderTypes.sell, userID, Convert.ToInt32(urunlerDatagrid[1, e.RowIndex].Value),true);
                 order.ShowDialog();
             }
+        }
+
+        private void addItemButton_Click(object sender, EventArgs e)
+        {
+            Transfer transfer = new Transfer(userID);
+            transfer.ShowDialog();
         }
 
         private void userInfoButton_Click(object sender, EventArgs e)

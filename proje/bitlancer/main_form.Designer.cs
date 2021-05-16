@@ -425,11 +425,7 @@
             this.kullaniciTipiLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.kullaniciTipiLabel.BackColor = System.Drawing.Color.Transparent;
             this.kullaniciTipiLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-<<<<<<< Updated upstream
-            this.kullaniciTipiLabel.ForeColor = System.Drawing.Color.MediumPurple;
-=======
             this.kullaniciTipiLabel.ForeColor = System.Drawing.Color.SteelBlue;
->>>>>>> Stashed changes
             this.kullaniciTipiLabel.Location = new System.Drawing.Point(606, 13);
             this.kullaniciTipiLabel.Name = "kullaniciTipiLabel";
             this.kullaniciTipiLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;

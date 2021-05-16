@@ -2,7 +2,7 @@
 
 **bitlancer Uygulaması**
 
-*Borsa platformu içersinde alış ve satış işlemlerinin gerçekleşmesi.*
+*Borsa platformu içerisinde alış ve satış işlemlerinin gerçekleşmesi.*
 
 **Projeyi Geliştirenler**
 

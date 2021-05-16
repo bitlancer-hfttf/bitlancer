@@ -47,33 +47,41 @@ namespace bitlancer
             }
             else
             {
-                DialogResult dialog = new DialogResult();
-                dialog = MessageBox.Show("Değişiklikler Kaydedilsin Mi?", "UYARI", MessageBoxButtons.YesNo);
-                if (dialog == DialogResult.Yes)
+                if (userpassword_textbox.Text != "" && username_textbox.Text != "" && mskTel.Text != "" && address_richtextbox.Text != "" && email_textbox.Text != "" && fullname_textbox.Text != "")
                 {
-                    bool islem = SingletonDB.GetInstance.updateUser(MyUser.id,username_textbox.Text,fullname_textbox.Text,userpassword_textbox.Text,mskTel.Text,email_textbox.Text,address_richtextbox.Text);
-                    if (islem)
+
+                    DialogResult dialog = new DialogResult();
+                    dialog = MessageBox.Show("Değişiklikler Kaydedilsin Mi?", "UYARI", MessageBoxButtons.YesNo);
+                    if (dialog == DialogResult.Yes)
                     {
-                        MessageBox.Show("Başarıyla Güncellendi!");
+                        bool islem = SingletonDB.GetInstance.updateUser(MyUser.id, username_textbox.Text, fullname_textbox.Text, userpassword_textbox.Text, mskTel.Text, email_textbox.Text, address_richtextbox.Text);
+                        if (islem)
+                        {
+                            MessageBox.Show("Başarıyla Güncellendi!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Maalesef Güncellenemedi!");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Maalesef Güncellenemedi!");
+                        setUI();
                     }
+                    button1.Text = "Düzenle";
+                    button1.ForeColor = Color.Black;
+                    button1.BackColor = Color.FromArgb(128, 128, 255);
+                    fullname_textbox.Enabled = false;
+                    username_textbox.Enabled = false;
+                    mskTel.Enabled = false;
+                    address_richtextbox.Enabled = false;
+                    userpassword_textbox.Enabled = false;
+                    email_textbox.Enabled = false;
                 }
                 else
                 {
-                    setUI();
+                    MessageBox.Show("Lütfen Geçerli Giriş Yapın");
                 }
-                button1.Text = "Düzenle";
-                button1.ForeColor = Color.Black;
-                button1.BackColor = Color.FromArgb(128, 128, 255);
-                fullname_textbox.Enabled = false;
-                username_textbox.Enabled = false;
-                mskTel.Enabled = false;
-                address_richtextbox.Enabled = false;
-                userpassword_textbox.Enabled = false;
-                email_textbox.Enabled = false;
             }
         }
     }

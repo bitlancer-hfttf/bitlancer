@@ -30,7 +30,7 @@ namespace bitlancer
 			MySqlConnection connection = null;
 			try
 			{
-				connection = new MySqlConnection("server=localhost;user=root;pwd=;database=bitlancer;charset=utf8;pooling=false");
+				connection = new MySqlConnection("server=localhost;port=3307;user=root;pwd=;database=bitlancer;charset=utf8;pooling=false");
 			}
 			catch (Exception e)
 			{
@@ -647,12 +647,12 @@ namespace bitlancer
 		{
 			if (orderType == bitlancer.orderTypes.buy)
 			{
-				int minItemQuantity = getId("select quantity from item_user_infos where item_id=" + itemID + " and unit_price=(select min(unit_price) from item_user_infos where item_id=" + itemID + " and selling=1)");
+				int minItemQuantity = getId("select quantity from item_user_infos where unit_price=(select min(unit_price) from item_user_infos where item_id="+itemID+" and selling=1 and user_id!=" + userID+") and (item_id=" + itemID+" and selling=1 and user_id!="+userID+")");
 				int tlITemQuantity = getId("select quantity from item_user_infos where item_id=4 and user_id=" + userID);
 				int destItemqQuantity = getId("select quantity from item_user_infos where selling=0 and (item_id=" + itemID + " and user_id=" + userID + ")");
 				if (quantity == minItemQuantity)
 				{
-					int sourceId = getId("select user_id from item_user_infos where item_id=" + itemID + " and unit_price=(select min(unit_price) from item_user_infos where item_id=" + itemID + " and (selling=1 and user_id!=" + userID + "))");
+					int sourceId = getId("select user_id from item_user_infos where unit_price=(select min(unit_price) from item_user_infos where item_id=" + itemID + " and selling=1 and user_id!=" + userID + ") and (item_id=" + itemID + " and selling=1 and user_id!=" + userID + ")");
 					int sourceIdTL = getId("select quantity from item_user_infos where item_id=4 and user_id=" + sourceId);
 					double unitPrice = getDouble("select unit_price from item_user_infos where selling=1 and (item_id=" + itemID + " and user_id=" + sourceId + ")");
 					if (tlITemQuantity >= (quantity * (int)unitPrice))
@@ -671,7 +671,7 @@ namespace bitlancer
 					{
 						while (quantity != 0)
 						{
-							int sourceId = getId("select user_id from item_user_infos where item_id=" + itemID + " and unit_price=(select min(unit_price) from item_user_infos where item_id=" + itemID + " and (selling=1 and user_id!=" + userID + "))");
+							int sourceId = getId("select user_id from item_user_infos where unit_price=(select min(unit_price) from item_user_infos where item_id=" + itemID + " and selling=1 and user_id!=" + userID + ") and (item_id=" + itemID + " and selling=1 and user_id!=" + userID + ")");
 							if (sourceId != 0)
 							{
 								int sourceIdTL = getId("select quantity from item_user_infos where item_id=4 and user_id=" + sourceId);
@@ -693,7 +693,7 @@ namespace bitlancer
 									updateAfterOrder(0, sourceId, 4, sourceIdTL + (miktar * (int)unitPrice), 1);
 									quantity -= miktar;
 									destItemqQuantity += miktar;
-									minItemQuantity = getId("select quantity from item_user_infos where item_id=" + itemID + " and unit_price=(select min(unit_price) from item_user_infos where item_id=" + itemID + " and (selling=1 and user_id!=" + userID + "))");
+									minItemQuantity = getId("select quantity from item_user_infos where unit_price=(select min(unit_price) from item_user_infos where item_id=" + itemID + " and selling=1 and user_id!=" + userID + ") and (item_id=" + itemID + " and selling=1 and user_id!=" + userID + ")");
 									tlITemQuantity = getId("select quantity from item_user_infos where item_id=4 and user_id=" + userID);
 									destItemqQuantity = getId("select quantity from item_user_infos where selling=0 and (item_id=" + itemID + " and user_id=" + userID + ")");
 								}
